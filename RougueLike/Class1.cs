@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    class Program
+    class Menu
     {
-        static void Main(string[] args)
-        {
-        }
-
         void MainMenu()
         {
             Console.WriteLine("/t/t Newbie Rouguelike/n");
