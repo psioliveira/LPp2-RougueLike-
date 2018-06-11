@@ -3,7 +3,7 @@
 
 namespace RougueLike
 {
-    class Weapon : IHaveWeight
+    class Weapon : IHaveWeight, IamItem
     {
         public string name = "";
         public float Weight { get; set; } = 0;
