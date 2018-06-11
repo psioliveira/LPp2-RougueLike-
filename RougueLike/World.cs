@@ -18,14 +18,17 @@ namespace RougueLike
         {
             for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < columns - 1; j++)
+                for (int j = 0; j < columns; j++)
                 {
                     Random rnd = new Random();
                     if (numOfTraps < maxTraps)
                     {
                         int id = rnd.Next(2, 3);
                         world[i, j] = new Tile(id);
-                        numOfTraps++;
+
+                        if (id == 3)
+                            numOfTraps++;
+
                     }
 
                     if (numOfTraps >= maxTraps)
@@ -33,31 +36,17 @@ namespace RougueLike
                         world[i, j] = new Tile(3);
 
                     }
-
                 }
-
             }
+
+            SetExit();
         }
 
         public void SetExit()
         {
-            int flag = 0;
             Random rnd = new Random();
-            for (int j = 0; j < columns; j++)
-            {
-                int id = rnd.Next(0, 100);
-                if (id <= 60 && flag == 0)
-                {
-                    world[rows, j] = new Tile(1);
-                    flag = 1;
-                }
-                else if(numOfTraps < maxTraps)
-                {
-                   id = rnd.Next(2, 3);
-                    world[rows, j] = new Tile(id);
-                    numOfTraps++;
-                }
-            }
+            int j = rnd.Next(0, 7);
+            world[j, columns - 1] = new Tile(1);
         }
     }
 }
