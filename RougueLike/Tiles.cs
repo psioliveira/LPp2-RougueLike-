@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    class Tile
+    class Tile  
     {
         public int damage = 0;
         public int maxDamage = 99;
@@ -33,6 +30,7 @@ namespace RougueLike
 
                 case 2:
                     Name = "Grass";
+                    SortMobs();
                     break;
 
                 case 3:
@@ -43,6 +41,15 @@ namespace RougueLike
 
                 default:
                     break;
+            }
+        }
+
+        void SortMobs()
+        {
+            int MaxMobs = 5;
+            for(int i =0; i < MaxMobs; i++)
+            {
+
             }
         }
     }
