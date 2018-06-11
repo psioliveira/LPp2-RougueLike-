@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    class Tiles
+    class Tile
     {
         string Name { get; set; } = "";
         bool visible = false;
@@ -14,7 +14,7 @@ namespace RougueLike
         public int idTile = 0;
 
         public List<IStuffs> stuffs;
-        public Tiles(int id)
+        public Tile(int id)
         {
             TileType(id);
             idTile = id;
