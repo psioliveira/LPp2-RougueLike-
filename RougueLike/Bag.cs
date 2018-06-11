@@ -23,7 +23,7 @@ namespace RougueLike
             get
             {
                 float totalWeight = 0;
-                foreach (IStuffs aThing in items)
+                foreach (IamItem aThing in items)
                 {
                     if (aThing != null)
                     {
@@ -45,7 +45,7 @@ namespace RougueLike
 
         /// <summary>Colocar um item na mochila</summary>
         /// <param name="aThing">Item a colocar na mochila</param>
-        public void AddThing(IStuffs aThing)
+        public void AddThing(IamItem aThing)
         {
             // Adicionar o item à mochila e depois incrementar o
             // número de coisas na mochila
@@ -55,7 +55,7 @@ namespace RougueLike
         /// <summary>Observar um item da mochila sem o remover da mesma</summary>
         /// <param name="index">Local onde está o item a observar</param>
         /// <returns>Item a ser observado</returns>
-        public IStuffs GetThing(int index)
+        public IamItem GetThing(int index)
         {
             if (index >= StuffCount)
             {
@@ -63,7 +63,7 @@ namespace RougueLike
                 throw new InvalidOperationException(
                     "Bag doesn't have that much stuff!");
             }
-            return items[index] as IStuffs;
+            return items[index] as IamItem;
         }
 
         /// <summary>

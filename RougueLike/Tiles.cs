@@ -8,12 +8,14 @@ namespace RougueLike
 {
     class Tiles
     {
+        public int damage = 0;
+        public int maxDamage = 99;
         string Name { get; set; } = "";
         bool visible = false;
         public Bag bag = new Bag();
         public int idTile = 0;
 
-        public List<IStuffs> stuffs;
+        public List<IAlive> stuffs;
         public Tiles(int id)
         {
             TileType(id);
@@ -35,6 +37,8 @@ namespace RougueLike
 
                 case 3:
                     Name = "Trap";
+                    Random rnd = new Random();
+                    damage = rnd.Next(0, this.maxDamage);
                     break;
 
                 default:

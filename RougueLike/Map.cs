@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    class Map : IStuffs, IamItem
+    class Map : IamItem
     {
         public float Weight { get; set; }
     }
