@@ -13,6 +13,7 @@ namespace RougueLike
         public Weapon eqWpn { get; set; } = null;
         public Bag bag = new Bag();
         private int MaxWeight { get; set; } = 300;
+
         public int[] posInMap;
 
         public int Attack(Weapon Wpn)

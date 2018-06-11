@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    class Mob : IAlive
+    class Mob : IAlive, IStuffs
     {
         public string Name { get; set; }
         public int HP { get; set; } = 100;
         public int damage { get; set; } = 0;
         public Bag bag = new Bag();
         private int MaxWeight { get; set; } = 300;
+        public float Weight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public int[] posInMap;
 
 
