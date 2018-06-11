@@ -1,10 +1,9 @@
-﻿namespace RougueLike
+﻿
+namespace RougueLike
 {
-    interface IHaveWeight
+    public interface IHaveWeight
     {
-        float weight { get; set; }
-        int id { get; set; }
-        void Drop();
-        void Take();
+        float Weight { get; set; }
+             
     }
 }
