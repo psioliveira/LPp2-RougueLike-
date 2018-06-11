@@ -10,10 +10,11 @@ namespace RougueLike
     {
         public string Name { get; set; }
         public int HP { get; set; } = 100;
-        public int damage { get; set; } = 0;
+        public int Damage { get; set; } = 0;
         public Bag bag = new Bag();
         private int MaxWeight { get; set; } = 300;
-        public float Weight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public float Weight { get; set; } = 0;
+        public bool neutral = true;
 
         public int[] posInMap;
 

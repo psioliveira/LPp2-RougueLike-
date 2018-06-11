@@ -1,7 +1,7 @@
 ﻿
 namespace RougueLike
 {
-    interface IFood: IHaveWeight
+    public interface IFood: IHaveWeight
     {
         
         int HpIncrease { get; set; }
