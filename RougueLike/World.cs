@@ -32,7 +32,7 @@ namespace RougueLike
                     if (_numOfTraps < MaxTraps)
                     {
                         int id = rnd.Next(2, 3);
-                        world[i, j] = new Tile(id);
+                        world[i, j] = new Tile(id, lvl);
 
                         if (id == 3)
                             _numOfTraps++;
@@ -41,7 +41,7 @@ namespace RougueLike
 
                     if (_numOfTraps >= MaxTraps)
                     {
-                        world[i, j] = new Tile(3);
+                        world[i, j] = new Tile(3, lvl);
 
                     }
                 }
@@ -54,7 +54,7 @@ namespace RougueLike
         {
             Random rnd = new Random();
             int j = rnd.Next(0, 7);
-            world[j, columns - 1] = new Tile(1);
+            world[j, columns - 1] = new Tile(1, Lvl);
         }
     }
 }

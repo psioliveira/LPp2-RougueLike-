@@ -14,10 +14,22 @@ namespace RougueLike
         public bool neutral = true;
         public int Id { get; set; } = 0;
         public Bag bag = new Bag();
+        private int Multiplier;
+        public int lvl;
 
-        public Mob()
+        public Mob(int lvl)
         {
+            this.lvl = lvl;
             MobType();
+        }
+
+        public int MAttack()
+        {
+            Random rnd = new Random();
+            Multiplier = (int) (3 * (Math.Pow(lvl - 1, 0.5f))) ;
+            int attack = rnd.Next(0, Damage + Multiplier);
+            return attack;
+            
         }
 
         public void MobType()
