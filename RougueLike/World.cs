@@ -8,30 +8,38 @@ namespace RougueLike
 {
     class World
     {
-        public int rows = 8, columns = 8;
+        private int rows = 8, columns = 8;
         public Tile[,] world = null;
-        int maxTraps = 0;
-        int numOfTraps = 0;
+        private int _maxTraps = 0;
+        private int _numOfTraps;
+        public int Lvl ;
 
-
-        public World()
+        int MaxTraps
         {
+            get => _maxTraps; set => _maxTraps = (int)Math.Pow(Lvl, 0.4f);
+        }
+        
+
+        public World(int lvl)
+        {
+            Lvl = lvl;
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
                     Random rnd = new Random();
-                    if (numOfTraps < maxTraps)
+                    if (_numOfTraps < MaxTraps)
                     {
                         int id = rnd.Next(2, 3);
                         world[i, j] = new Tile(id);
 
                         if (id == 3)
-                            numOfTraps++;
+                            _numOfTraps++;
 
                     }
 
-                    if (numOfTraps >= maxTraps)
+                    if (_numOfTraps >= MaxTraps)
                     {
                         world[i, j] = new Tile(3);
 

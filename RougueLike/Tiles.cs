@@ -3,20 +3,21 @@ using System.Collections.Generic;
 
 namespace RougueLike
 {
-    class Tile  
+    class Tile
     {
         public int damage = 0;
-        public int maxDamage = 99;
+        private int maxDamage = 99;
         string Name { get; set; } = "";
         bool visible = false;
         public Bag bag = new Bag();
-        public int idTile = 0;
+        private int idTile = 0;
 
-        public List<IamItem> stuffs;
+        public List<IAlive> stuffs;
         public Tile(int id)
         {
             TileType(id);
             idTile = id;
+            SortMobs();
         }
 
         public void TileType(int id)
@@ -36,7 +37,7 @@ namespace RougueLike
                 case 3:
                     Name = "Trap";
                     Random rnd = new Random();
-                    damage = rnd.Next(0, this.maxDamage);
+                    damage = rnd.Next(0, maxDamage);
                     break;
 
                 default:
@@ -47,9 +48,15 @@ namespace RougueLike
         void SortMobs()
         {
             int MaxMobs = 5;
-            for(int i =0; i < MaxMobs; i++)
+            Random rnd = new Random();
+            int Mobs = rnd.Next(0,MaxMobs);
+            if (idTile == 2)
             {
-
+                for (int i = 0; i < Mobs; i++)
+                {
+                    Mob mb = new Mob();
+                    stuffs.Add(mb);
+                }
             }
         }
     }

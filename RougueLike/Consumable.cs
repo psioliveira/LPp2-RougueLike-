@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    public class Consumable : IFood, IamItem
+    public class Consumable : IFood, IAmItem
     {
         /// <summary>
         /// Classe que representa alimentos ou itens de cura

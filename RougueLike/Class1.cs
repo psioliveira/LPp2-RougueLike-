@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    public interface IAmItem:IHaveWeight
+    class Menu
     {
+
+        void Menu()
+        {
+
+        }
+
+
     }
 }

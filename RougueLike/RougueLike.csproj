@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bag.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Consumable.cs" />
     <Compile Include="IamItem.cs" />
     <Compile Include="IFood.cs" />
