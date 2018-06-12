@@ -44,7 +44,6 @@ namespace RougueLike
         }
 
         /// <summary>Colocar um item na mochila</summary>
-        /// <param name="aThing">Item a colocar na mochila</param>
         public void AddThing(IamItem aThing)
         {
             // Adicionar o item à mochila e depois incrementar o

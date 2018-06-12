@@ -53,13 +53,13 @@ namespace RougueLike
 
                 case 5:
                     Name = "Fish";
-                    HpIncrease = 15;
+                    HpIncrease = 20;
                     Weight = 8;
                     break;
 
                 case 6:
                     Name = "Meat";
-                    HpIncrease = 20;
+                    HpIncrease = 15;
                     Weight = 10;
                     break;
 
