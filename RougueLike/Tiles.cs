@@ -11,10 +11,12 @@ namespace RougueLike
         bool visible = false;
         public Bag bag = new Bag();
         private int idTile = 0;
+        public int lvl;
 
         public List<IAlive> stuffs;
-        public Tile(int id)
+        public Tile(int id, int lvl)
         {
+            this.lvl = lvl;
             TileType(id);
             idTile = id;
             SortMobs();
@@ -54,7 +56,7 @@ namespace RougueLike
             {
                 for (int i = 0; i < Mobs; i++)
                 {
-                    Mob mb = new Mob();
+                    Mob mb = new Mob(lvl);
                     stuffs.Add(mb);
                 }
             }
