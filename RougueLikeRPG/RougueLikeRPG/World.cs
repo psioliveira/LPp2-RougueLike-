@@ -59,6 +59,13 @@ namespace RougueLike
             Tworld[j, columns - 1] = new Tile(1, Lvl);
         }
 
+        public void SetPlayer()
+        {
+            Random rnd = new Random();
+            int i = rnd.Next(0, 7);
+            Tworld[i,0] = new Tile(4, Lvl);
+        }
+
         public Tile[,] GetWorld()
         {
             return Tworld;
