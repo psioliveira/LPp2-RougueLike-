@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF060CD8-3922-4199-8B80-6A60DD3CA7AA}</ProjectGuid>
+    <ProjectGuid>{1699B0E2-F79C-499B-B44E-1206F4BA65A1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RougueLike</RootNamespace>
-    <AssemblyName>RougueLike</AssemblyName>
+    <RootNamespace>RougueLikeRPG</RootNamespace>
+    <AssemblyName>RougueLikeRPG</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,25 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bag.cs" />
-<<<<<<< HEAD
-    <Compile Include="Drawer.cs" />
-=======
-    <Compile Include="Menu.cs" />
->>>>>>> 606db32fc1a98604271965abb816c290aa3fc8a2
-    <Compile Include="Consumable.cs" />
-    <Compile Include="IamItem.cs" />
-    <Compile Include="IFood.cs" />
-    <Compile Include="ISortable.cs" />
-    <Compile Include="Mob.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="Tiles.cs" />
-    <Compile Include="Weapon.cs" />
-    <Compile Include="IHaveWeight.cs" />
-    <Compile Include="IAlive.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
