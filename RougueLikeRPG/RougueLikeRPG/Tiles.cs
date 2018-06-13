@@ -9,17 +9,23 @@ namespace RougueLike
         public int damage = 0;
         private int maxDamage = 99;
         string Name { get; set; } = "";
-        public bool visible = false;
-        public Bag bag = new Bag();
+        private bool visible = false;
+        private Bag bag = new Bag();
         private int idTile = 0;
-        public int lvl;
-        public ArrayList stuffs;
+        private int lvl;
+        private ArrayList stuffs = new ArrayList(5);
+
+        public ArrayList Stuffs { get => stuffs; set => stuffs = value; }
+        public int Lvl { get => lvl; set => lvl = value; }
+        public int IdTile { get => idTile; set => idTile = value; }
+        public Bag Bag { get => bag; set => bag = value; }
+        public bool Visible { get => visible; set => visible = value; }
 
         public Tile(int id, int lvl)
         {
-            this.lvl = lvl;
+            Lvl = lvl;
             TileType(id);
-            idTile = id;
+            IdTile = id;
             SortMobs();
         }
 
@@ -29,7 +35,7 @@ namespace RougueLike
             {
                 case 1:
                     Name = "Exit";
-                    visible = true;
+                    Visible = true;
                     break;
 
                 case 2:
@@ -53,15 +59,14 @@ namespace RougueLike
         {
             int MaxMobs = 5;
             Random rnd = new Random();
-            int Mobs = rnd.Next(0,MaxMobs);
-            if (idTile == 2)
+            int Mobs = rnd.Next(0, MaxMobs);
+
+            for (int i = 0; i < Mobs; i++)
             {
-                for (int i = 0; i < Mobs; i++)
-                {
-                    Mob mb = new Mob(lvl);
-                    stuffs.Add(mb);
-                }
+                Mob mb = new Mob(Lvl);
+                Stuffs.Add(mb);
             }
+
         }
     }
 }

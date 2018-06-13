@@ -22,13 +22,13 @@ namespace RougueLike
             {
                 for (int y = 0; y < ypos; y++)
                 {
-                    if ((world.GetWorld())[x, y].visible)
+                    if ((world.GetWorld())[x, y].Visible)
                     {
                         char[] c = new char[10] { '.', '.', '.', '.', '.',
                                                   '.', '.', '.', '.', '.' };
                         int i = 0;
 
-                        foreach (ISortable s in (world.GetWorld())[x, y].stuffs)
+                        foreach (ISortable s in (world.GetWorld())[x, y].Stuffs)
                         {
                             if (s is Player)
                             {
@@ -52,7 +52,7 @@ namespace RougueLike
 
                         PrintTile(c, y, x);
                     }
-                    if (!(world.GetWorld())[x, y].visible)
+                    if (!(world.GetWorld())[x, y].Visible)
                     {
                         char[] c = new char[10] { '*', '*', '*', '*', '*',
                                                   '*', '*', '*', '*', '*' };
@@ -65,15 +65,15 @@ namespace RougueLike
 
         void PrintTile(char[] c, int x, int y)
         {
-            int xOfset = x * 6;
-            int yOfset = 2 + (y * 3);
+            int xOfset = 2 + (x * 5);
+            int yOfset = 4 + (y * 2);
             string s1 = new string(c, 0, 5);
             string s2 = new string(c, 5, 5);
 
             Console.SetCursorPosition(x + xOfset, y + yOfset);
-            Console.WriteLine(s1 + ' ');
+            Console.Write(s1);
             Console.SetCursorPosition(x + xOfset, y + yOfset + 1);
-            Console.WriteLine(s2 + ' ');
+            Console.Write(s2);
         }
 
         public void DrawMenu()
@@ -96,7 +96,7 @@ namespace RougueLike
             **/
             DrawHead();
             DrawBody();
-
+            DrawFoot();
         }
 
         public void DrawHead()
@@ -113,13 +113,20 @@ namespace RougueLike
             Console.Write("+-GAME--------------------------------------------+" +
                            "+-STATUS---------------------++-WORLD------------+");
         }
+
+        public void DrawFoot()
+        {
+            Console.SetCursorPosition(0, 29);
+            Console.Write("+--------------------------------------------------" +
+                           "-------------------------------------------------+");
+        }
         public void DrawBody()
         {
             int x = 0;
             int y = 3;
 
             //verticais maiores
-            for (int j = y; j < 28; j++)
+            for (int j = y; j < 29; j++)
             {
                 Console.SetCursorPosition(0, j);
                 Console.Write("|");
@@ -157,23 +164,23 @@ namespace RougueLike
                 {
                     Console.SetCursorPosition(i, j);
                     Console.Write("|");
-
                 }
             }
 
             Chart();
 
+            //horizontal menor1
             Console.SetCursorPosition(52, 15);
             Console.Write("----------------------------++------------------");
             Console.SetCursorPosition(52, 16);
             Console.Write("-MENU--------------++---------------------------");
 
-            /*
-            Console.SetCursorPosition(51, 15);
+            //horizontal menor2
+            Console.SetCursorPosition(51, 22);
             Console.Write("----------------------------++------------------+");
-            Console.SetCursorPosition(51, 16);
-            Console.Write("------------------------------------------------+");
-            */
+            Console.SetCursorPosition(51, 23);
+            Console.Write("-SELECTION--------------------------------------+");
+            
         }
 
         public void Chart()
@@ -187,7 +194,7 @@ namespace RougueLike
             Console.SetCursorPosition(82, 7);
             Console.Write("ߧ-TROLL");
             Console.SetCursorPosition(82, 8);
-            Console.Write("४-ORC");
+            Console.Write('\u0223' + "-ORC");
             Console.SetCursorPosition(82, 9);
             Console.Write("Փ-MINOTAUR");
             Console.SetCursorPosition(82, 10);

@@ -12,10 +12,10 @@ namespace RougueLike
         public int HP { get; set; } = 100;
         public Weapon EqWpn { get; set; } = null;
         public Bag bag = new Bag();
-        private int MaxWeight { get; set; } = 300;
+        private int MaxWeight { get; } = 300;
         private char c = 'ߐ';
 
-        public int[] posInMap;
+        public int[] posInMap = new int[2] { 0, 0 };
         public Player()
         {
 
