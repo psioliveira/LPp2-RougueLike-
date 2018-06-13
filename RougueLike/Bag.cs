@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace RougueLike
 {
-    public class Bag 
+    public class Bag : ISortable
     {
 
         /// <summary>
@@ -11,6 +11,7 @@ namespace RougueLike
         /// </summary>
         /// <summary>Array que contém os itens da mochila</summary>
         private ArrayList items;
+        private char c = 'ტ';
 
         /// <summary>Número de itens na mochila</summary>
         public int StuffCount { get { return items.Count; } }
@@ -61,6 +62,11 @@ namespace RougueLike
                 index = StuffCount - 1;
             }
             return items[index] as IAmItem;
+        }
+
+        public char GetC()
+        {
+            return c;
         }
 
     }
