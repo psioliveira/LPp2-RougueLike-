@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    class Map : IAmItem
+    class Map : IAmItem,ISortable
     {
         public float Weight { get; set; }
+        private char c = 'M';
     }
 }

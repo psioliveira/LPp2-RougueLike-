@@ -11,7 +11,7 @@ namespace RougueLike
         /// </summary>
         /// <summary>Array que contém os itens da mochila</summary>
         private ArrayList items;
-        private char c = 'ტ';
+        private char c = '&';
 
         /// <summary>Número de itens na mochila</summary>
         public int StuffCount { get { return items.Count; } }

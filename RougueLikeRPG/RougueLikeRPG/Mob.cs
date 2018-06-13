@@ -50,7 +50,7 @@ namespace RougueLike
                     Damage = 0;
                     neutral = true;
                     bag.AddThing(new Consumable(6));
-                    c = 'Ѡ';
+                    c = 'r';
                     break;
 
                 case 2:
@@ -59,7 +59,7 @@ namespace RougueLike
                     Damage = 5;
                     neutral = true;
                     bag.AddThing(new Consumable(4));
-                    c = 'ສ';
+                    c = 'G';
                     break;
 
                 case 3:
@@ -68,7 +68,7 @@ namespace RougueLike
                     Damage = 10;
                     neutral = false;
                     bag.AddThing(new Consumable(7));
-                    c = 'ߧ';
+                    c = 'T';
                     break;
 
                 case 4:
@@ -78,7 +78,7 @@ namespace RougueLike
                     neutral = false;
                     bag.AddThing(new Consumable(7));
                     bag.AddThing(new Weapon(0));
-                    c = '४';
+                    c = 'O';
                     break;
 
                 case 5:
@@ -88,7 +88,7 @@ namespace RougueLike
                     neutral = false;
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Weapon(6));
-                    c = 'Փ';
+                    c = 'Y';
                     break;
 
                 case 6:
@@ -99,7 +99,7 @@ namespace RougueLike
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Weapon(4));
-                    c = 'Ѱ';
+                    c = 'B';
                     break;
             }
         }
