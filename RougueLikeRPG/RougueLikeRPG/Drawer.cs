@@ -26,30 +26,37 @@ namespace RougueLike
                     {
                         char[] c = new char[10] { '.', '.', '.', '.', '.',
                                                   '.', '.', '.', '.', '.' };
-                        int i = 0;
-
-                        foreach (ISortable s in (world.GetWorld())[x, y].Stuffs)
+                        if ((world.GetWorld())[x, y].IdTile == 1)
                         {
-                            if (s is Player)
-                            {
+                            c = new char[10] { 'E', 'X', 'I', 'T', '!',
+                                               'E', 'X', 'I', 'T', '!' };
+                        }
+                        else
+                        {
+                            int i = 0;
 
-                                c[i] = ((Player)s).GetC();
-                                i++;
-                            }
-                            if (s is Mob)
+                            foreach (ISortable s in (world.GetWorld())[x, y].Stuffs)
                             {
+                                if (s is Player)
+                                {
 
-                                c[i] = ((Mob)s).GetC();
-                                i++;
-                            }
-                            if (s is Bag)
-                            {
+                                    c[i] = ((Player)s).GetC();
+                                    i++;
+                                }
+                                if (s is Mob)
+                                {
 
-                                c[i] = ((Mob)s).GetC();
-                                i++;
+                                    c[i] = ((Mob)s).GetC();
+                                    i++;
+                                }
+                                if (s is Bag)
+                                {
+
+                                    c[i] = ((Mob)s).GetC();
+                                    i++;
+                                }
                             }
                         }
-
                         PrintTile(c, y, x);
                     }
                     if (!(world.GetWorld())[x, y].Visible)
@@ -81,25 +88,30 @@ namespace RougueLike
 
             int x = 102, y = 35;
             Console.SetWindowSize(x, y);
-            /**
             
             Console.SetCursorPosition(40,10);
             Console.WriteLine("Rouguelike Game");
-            Console.SetCursorPosition(44,13);
-            Console.WriteLine("New Game");
-            Console.SetCursorPosition(43, 15);
-            Console.WriteLine("High Score");
-            Console.SetCursorPosition(42, 17);
-            Console.WriteLine("Game Credits");
-            Console.SetCursorPosition(46, 19);
-            Console.WriteLine("Quit");
-            **/
+
+            Console.SetCursorPosition(42,13);
+            Console.WriteLine("1.New Game");
+            Console.SetCursorPosition(41, 15);
+            Console.WriteLine("2.High Score");
+            Console.SetCursorPosition(40, 17);
+            Console.WriteLine("3.Game Credits");
+            Console.SetCursorPosition(44, 19);
+            Console.WriteLine("4.Quit");
+            
+
+        }
+
+        public void DrawHud()
+        {
             DrawHead();
             DrawBody();
             DrawFoot();
         }
 
-        public void DrawHead()
+        private void DrawHead()
         {
             Console.SetCursorPosition(0, 0);
             Console.Write("|*******************************************");
@@ -113,14 +125,13 @@ namespace RougueLike
             Console.Write("+-GAME--------------------------------------------+" +
                            "+-STATUS---------------------++-WORLD------------+");
         }
-
-        public void DrawFoot()
+        private void DrawFoot()
         {
             Console.SetCursorPosition(0, 29);
             Console.Write("+--------------------------------------------------" +
                            "-------------------------------------------------+");
         }
-        public void DrawBody()
+        private void DrawBody()
         {
             int x = 0;
             int y = 3;
@@ -180,29 +191,28 @@ namespace RougueLike
             Console.Write("----------------------------++------------------+");
             Console.SetCursorPosition(51, 23);
             Console.Write("-SELECTION--------------------------------------+");
-            
-        }
 
-        public void Chart()
+        }
+        private void Chart()
         {
             Console.SetCursorPosition(82, 4);
-            Console.Write("☿-PLAYER");
+            Console.Write("P-PLAYER");
             Console.SetCursorPosition(82, 5);
-            Console.Write("Ѡ-RABBIT");
+            Console.Write("r-RABBIT");
             Console.SetCursorPosition(82, 6);
-            Console.Write("ສ-GOBLIN");
+            Console.Write("G-GOBLIN");
             Console.SetCursorPosition(82, 7);
-            Console.Write("ߧ-TROLL");
+            Console.Write("T-TROLL");
             Console.SetCursorPosition(82, 8);
-            Console.Write('\u0223' + "-ORC");
+            Console.Write("O-ORC");
             Console.SetCursorPosition(82, 9);
-            Console.Write("Փ-MINOTAUR");
+            Console.Write("Y-MINOTAUR");
             Console.SetCursorPosition(82, 10);
-            Console.Write("Ѱ-BUNNY OF DOOM");
+            Console.Write("B-BUNNY OF DOOM");
             Console.SetCursorPosition(82, 11);
-            Console.Write("ტ-LOOT");
+            Console.Write("&-LOOT");
             Console.SetCursorPosition(82, 12);
-            Console.Write("ם-MAP");
+            Console.Write("M-MAP");
             Console.SetCursorPosition(82, 13);
             Console.Write(".-GRASS");
             Console.SetCursorPosition(82, 14);
