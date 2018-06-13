@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    class Player : IAlive
+    class Player : IAlive, ISortable
     {
         public string Name { get; set; }
         public int HP { get; set; } = 100;
         public Weapon EqWpn { get; set; } = null;
         public Bag bag = new Bag();
         private int MaxWeight { get; set; } = 300;
+        private char c = 'ߐ';
 
         public int[] posInMap;
         public Player()
@@ -26,7 +27,12 @@ namespace RougueLike
             return damage;
 
         }
+        public char GetC()
+        {
+            return c;
+        }
 
-       
+
+
     }
 }

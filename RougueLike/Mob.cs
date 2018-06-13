@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RougueLike
 {
-    public class Mob : IAlive
+    public class Mob : IAlive, ISortable
     {
         public string Name { get; set; }
         public int HP { get; set; } = 100;
@@ -16,6 +16,7 @@ namespace RougueLike
         public Bag bag = new Bag();
         private int Multiplier;
         public int lvl;
+        private char c ;
 
         public Mob(int lvl)
         {
@@ -49,6 +50,7 @@ namespace RougueLike
                     Damage = 0;
                     neutral = true;
                     bag.AddThing(new Consumable(6));
+                    c = 'Ѡ';
                     break;
 
                 case 2:
@@ -57,6 +59,7 @@ namespace RougueLike
                     Damage = 5;
                     neutral = true;
                     bag.AddThing(new Consumable(4));
+                    c = 'ສ';
                     break;
 
                 case 3:
@@ -65,6 +68,7 @@ namespace RougueLike
                     Damage = 10;
                     neutral = false;
                     bag.AddThing(new Consumable(7));
+                    c = 'ߧ';
                     break;
 
                 case 4:
@@ -74,6 +78,7 @@ namespace RougueLike
                     neutral = false;
                     bag.AddThing(new Consumable(7));
                     bag.AddThing(new Weapon(0));
+                    c = '४';
                     break;
 
                 case 5:
@@ -83,6 +88,7 @@ namespace RougueLike
                     neutral = false;
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Weapon(6));
+                    c = 'Փ';
                     break;
 
                 case 6:
@@ -93,6 +99,7 @@ namespace RougueLike
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Weapon(4));
+                    c = 'Ѱ';
                     break;
             }
         }
@@ -104,6 +111,10 @@ namespace RougueLike
             return id;
         }
 
+        public char GetC()
+        {
+            return c;
+        }
 
     }
 }

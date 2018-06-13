@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace RougueLike
@@ -8,12 +9,12 @@ namespace RougueLike
         public int damage = 0;
         private int maxDamage = 99;
         string Name { get; set; } = "";
-        bool visible = false;
+        public bool visible = false;
         public Bag bag = new Bag();
         private int idTile = 0;
         public int lvl;
+        public ArrayList stuffs;
 
-        public List<IAlive> stuffs;
         public Tile(int id, int lvl)
         {
             this.lvl = lvl;
@@ -34,6 +35,7 @@ namespace RougueLike
                 case 2:
                     Name = "Grass";
                     SortMobs();
+
                     break;
 
                 case 3:

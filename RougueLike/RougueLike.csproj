@@ -43,7 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bag.cs" />
+<<<<<<< HEAD
     <Compile Include="Drawer.cs" />
+=======
+    <Compile Include="Menu.cs" />
+>>>>>>> 606db32fc1a98604271965abb816c290aa3fc8a2
     <Compile Include="Consumable.cs" />
     <Compile Include="IamItem.cs" />
     <Compile Include="IFood.cs" />
