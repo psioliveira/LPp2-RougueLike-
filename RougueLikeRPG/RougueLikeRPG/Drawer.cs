@@ -161,7 +161,7 @@ namespace RougueLike
                 }
             }
 
-            // Chart();
+            Chart();
 
             Console.SetCursorPosition(52, 15);
             Console.Write("----------------------------++------------------");
@@ -179,7 +179,7 @@ namespace RougueLike
         public void Chart()
         {
             Console.SetCursorPosition(82, 4);
-            Console.Write("ߐ-PLAYER");
+            Console.Write("☿-PLAYER");
             Console.SetCursorPosition(82, 5);
             Console.Write("Ѡ-RABBIT");
             Console.SetCursorPosition(82, 6);

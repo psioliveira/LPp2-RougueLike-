@@ -9,7 +9,7 @@ namespace RougueLike
     class Menu
     {
 
-        void Menu()
+        public Menu()
         {
 
         }
