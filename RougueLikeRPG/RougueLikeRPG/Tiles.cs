@@ -26,7 +26,7 @@ namespace RougueLike
             Lvl = lvl;
             TileType(id);
             IdTile = id;
-            SortMobs();
+            
         }
 
         public void TileType(int id)
@@ -36,18 +36,23 @@ namespace RougueLike
                 case 1:
                     Name = "Exit";
                     Visible = true;
+                    stuffs = new ArrayList(1);
                     break;
 
                 case 2:
                     Name = "Grass";
                     SortMobs();
-
                     break;
 
                 case 3:
                     Name = "Trap";
                     Random rnd = new Random();
                     damage = rnd.Next(0, maxDamage);
+                    break;
+
+                case 4:
+                    Name = "Grass";
+                    Visible = true;
                     break;
 
                 default:
