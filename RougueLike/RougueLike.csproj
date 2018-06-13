@@ -43,10 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bag.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Drawer.cs" />
     <Compile Include="Consumable.cs" />
     <Compile Include="IamItem.cs" />
     <Compile Include="IFood.cs" />
+    <Compile Include="ISortable.cs" />
     <Compile Include="Mob.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Tiles.cs" />
