@@ -14,7 +14,7 @@ namespace RougueLike
         bool alive = true;
         private Drawer drw = new Drawer();
 
-       
+
 
         static void Main(string[] args)
         {
@@ -25,17 +25,20 @@ namespace RougueLike
 
             while (prog.alive == true)
             {
-                
+
                 prog.alive = prog.Update(prog.p);
 
             }
 
         }
-   
+
         bool Update(Player p)
         {
             drw.DrawWorld(world);
 
+            char c = Convert.ToChar(Console.ReadKey());
+
+            Selections(c);
 
             if (p.HP > 0) return true;
             if (p.HP <= 0) return false;
@@ -49,7 +52,11 @@ namespace RougueLike
             world = new World(lvl);
         }
 
+        void Selections(char sel)
+        {
 
-        
+        }
+
+
     }
 }
