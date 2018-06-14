@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace RougueLike
 {
     class Program
@@ -12,40 +13,31 @@ namespace RougueLike
         bool alive = true;
         private Drawer drw = new Drawer();
 
-
-
         static void Main(string[] args)
         {
-            
             Console.SetWindowSize(102, 35);
             Console.OutputEncoding = Encoding.UTF8;
             Program prog = new Program();
             prog.GenereateWorld();
-            //prog.drw.MainMenu();
+            prog.MainMenu();
 
-            while (prog.alive == true)
-            {
-
-                prog.alive = prog.Update(prog.p);
-
-            }
-
+            
         }
 
         bool Update(Player p)
         {
             drw.SetVisible(world);
             drw.DrawWorld(world);
-            drw.DrawHud(p,world);
+            drw.DrawHud(p, world);
 
             drw.Menu(); //ingame menu
             Console.SetCursorPosition(82, 28);
             char c = Convert.ToChar(Console.Read());
 
             Selections(c);
-            foreach(Tile t in world.Tworld)
+            foreach (Tile t in world.Tworld)
             {
-                if(t.IdTile==1 && t.Stuffs.Contains(p as Player))
+                if (t.IdTile == 1 && t.Stuffs.Contains(p as Player))
                 {
                     lvl++;
                     GenereateWorld();
@@ -54,13 +46,11 @@ namespace RougueLike
             if (p.HP > 0) return true;
             if (p.HP <= 0) return false;
             else return false;
-
-
         }
 
         void GenereateWorld()
         {
-            world = new World(lvl,p);
+            world = new World(lvl, p);
             p.HP = 100;
         }
 
@@ -100,24 +90,23 @@ namespace RougueLike
 
                 case 'u':
                 case 'U':
-                   // UseItem(p);
+                    // UseItem(p);
                     break;
 
                 case 'v':
                 case 'V':
-                   // DropItem(p, world);
+                    // DropItem(p, world);
                     break;
 
                 case 'i':
                 case 'I':
-                   // Information(p);
+                    // Information(p);
                     break;
 
                 case 'q':
                 case 'Q':
-                  //  QuitGame();
+                    //  QuitGame();
                     break;
-
             }
         }
 
@@ -267,10 +256,10 @@ namespace RougueLike
             Convert.ToInt32(sel);
             foreach (Tile t in world.Tworld)
             {
-                if (t.Stuffs.Contains(p) && t.Stuffs.Count >1)
+                if (t.Stuffs.Contains(p) && t.Stuffs.Count > 1)
                 {
                     if (sel == 6) break;
-                    if(sel>0 && sel<=t.Stuffs.Count && t.Stuffs[sel-1] is Mob)
+                    if (sel > 0 && sel <= t.Stuffs.Count && t.Stuffs[sel - 1] is Mob)
                     {
                         drw.MobStatus(t.Stuffs[sel] as Mob);
                     }
@@ -291,9 +280,62 @@ namespace RougueLike
                     Console.Write("in this area                ");
                 }
             }
+        }
+
+
+        void MainMenu()
+        {
+            int sel;
+            int flag = 1;
+            do
+            {
+                Console.Clear();
+                drw.MainMenu();
+                sel = Convert.ToChar(Console.Read());
+
+                switch (sel)
+                {
+                    case '1':
+                        Console.Clear();
+                        while (alive == true)
+                        {
+                            alive = Update(p);
+                        }
+                        break;
+
+                    case '2':
+                        break;
+
+                    case '3':
+                        Console.Clear();
+                        Credits();
+                        break;
+
+                    case '4':
+                        Environment.Exit(0);
+                        break;
+
+                    default:
+                        break;
+                }
+            } while (flag == 0 || sel != 4);
 
 
         }
 
+        void Credits()
+        {
+            drw.DrawCredits();
+
+            Console.ReadKey();
+            Console.Clear();
+            MainMenu();
+
+        }
+        void PlayGame(int flag)
+        {
+            flag = 1;
+            Console.Clear();
+        }
     }
 }
