@@ -70,6 +70,7 @@ namespace RougueLike
             int mobQnt = 0;
             while (flag < 5)
             {
+                flag++;
                 int chance = rnd.Next();
                 if ((chance % 100) <= (20 + (lvl / 4)))
                 {
@@ -80,7 +81,7 @@ namespace RougueLike
                     stuffs.Add(mb as Mob);
                     mobQnt++;
                 }
-                flag++;
+                
             }
 
             return mobQnt;
