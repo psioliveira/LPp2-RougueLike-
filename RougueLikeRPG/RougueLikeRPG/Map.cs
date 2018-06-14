@@ -4,9 +4,16 @@ using System.Text;
 
 namespace RougueLike
 {
-    class Map : IAmItem,ISortable
+    class Map : ISortable
     {
-        public float Weight { get; set; }
         private char c = 'M';
+
+        public Map() { }
+
+        public char GetC()
+        {
+            return c;
+        }
+
     }
 }

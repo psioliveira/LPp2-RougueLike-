@@ -21,17 +21,17 @@ namespace RougueLike
             {
                 for (int y = 0; y < ypos; y++)
                 {
-                    if ((world.GetWorld())[x, y].Visible)
+                    if ((world.Tworld)[x, y].Visible)
                     {
                         char[] c = new char[10] { '.', '.', '.', '.', '.',
                                                   '.', '.', '.', '.', '.' };
-                        if ((world.GetWorld())[x, y].IdTile == 1)
+                        if ((world.Tworld)[x, y].IdTile == 1)
                         {
                             c = new char[10] { 'E', 'X', 'I', 'T', '!',
                                                'E', 'X', 'I', 'T', '!' };
                         }
 
-                        if ((world.GetWorld())[x, y].IdTile == 3)
+                        if ((world.Tworld)[x, y].IdTile == 3)
                         {
                             c = new char[10] { '^', '^', '^', '^', '^',
                                                '^', '^', '^', '^', '^' };
@@ -52,6 +52,7 @@ namespace RougueLike
                                 if (s is Mob)
                                 {
                                     world.Tworld[x, y].Visible = true;
+
                                     c[i] = ((Mob)s).GetC();
                                     i++;
                                 }
@@ -61,11 +62,18 @@ namespace RougueLike
                                     c[i] = ((Mob)s).GetC();
                                     i++;
                                 }
+
+                                if (s is Map)
+                                {
+
+                                    c[i] = ((Map)s).GetC();
+                                    i++;
+                                }
                             }
                         }
                         PrintTile(c, y, x);
                     }
-                    if (!(world.GetWorld())[x, y].Visible)
+                    if (!world.Tworld[x, y].Visible)
                     {
                         char[] c = new char[10] { '*', '*', '*', '*', '*',
                                                   '*', '*', '*', '*', '*' };
@@ -106,14 +114,15 @@ namespace RougueLike
 
         }
 
-        public void DrawHud()
+        public void DrawHud(Player player, World world)
         {
-            DrawHead();
+            DrawHead(world.Lvl);
             DrawBody();
             DrawFoot();
+            PlayerStatus(player);
         }
 
-        private void DrawHead()
+        private void DrawHead(int lvl)
         {
             Console.SetCursorPosition(0, 0);
             Console.Write("|*******************************************");
@@ -126,6 +135,8 @@ namespace RougueLike
             Console.SetCursorPosition(0, 2);
             Console.Write("+-GAME--------------------------------------------+" +
                            "+-STATUS---------------------++-WORLD------------+");
+            Console.SetCursorPosition(42, 2);
+            Console.Write("LVL " + lvl);
         }
         private void DrawFoot()
         {
@@ -289,7 +300,7 @@ namespace RougueLike
 
             Console.SetCursorPosition(73, 19);
             Console.WriteLine("HP:" + mob.HP);
-            Console.SetCursorPosition(73, 19);
+            Console.SetCursorPosition(73, 20);
             Console.WriteLine("lst ATK:");
 
         }
@@ -300,14 +311,15 @@ namespace RougueLike
             Console.WriteLine("You:");
 
             Console.SetCursorPosition(52, 19);
-            Console.WriteLine("HP:" + player.HP + "/100");
-            Console.SetCursorPosition(52, 19);
-            Console.WriteLine("Cap:" + player.bag.Weight + "/100");
+            Console.WriteLine("HP:" + player.HP + "/100   ");
+            Console.SetCursorPosition(52, 20);
+            Console.WriteLine("Cap:" + player.bag.Weight + "/100   ");
 
         }
 
-        public void SetVisible(Tile[,] tiles)
+        public void SetVisible(World world)
         {
+            Tile[,] tiles = world.Tworld;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -316,6 +328,10 @@ namespace RougueLike
                     {
                         if (p is Player)
                         {
+                            foreach (ISortable m in tiles[i, j].Stuffs)
+                                if (m is Map)
+                                    ShowWorld(tiles);
+
                             if (i == 0)
                             {
                                 if (j != 0 && j < 7)
@@ -403,6 +419,14 @@ namespace RougueLike
 
         }
 
+
+        private void ShowWorld(Tile[,] tiles)
+        {
+            foreach (Tile t in tiles)
+            {
+                t.Visible = true;
+            }
+        }
 
     }
 }

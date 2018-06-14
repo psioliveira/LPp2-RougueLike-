@@ -13,7 +13,7 @@ namespace RougueLike
         private int idTile = 0;
         private int lvl;
         private ArrayList stuffs = new ArrayList(5);
-        
+        Random rnd = new Random(DateTime.Now.Millisecond);
 
         public ArrayList Stuffs { get => stuffs; set => stuffs = value; }
         public int Lvl { get => lvl; set => lvl = value; }
@@ -21,37 +21,41 @@ namespace RougueLike
         public Bag Bag { get => bag; set => bag = value; }
         public bool Visible { get => visible; set => visible = value; }
 
+
         public Tile(int id, int lvl)
         {
-            Random rnd = new Random();
-            Lvl = lvl;
-            TileType(id, rnd);
+
+            TileType(id);
             IdTile = id;
-            
+
         }
 
-        public void TileType(int id,Random rnd)
+        public void TileType(int id)
         {
+
+            Lvl = lvl;
             switch (id)
             {
                 case 1: // exit
-                    
+
                     Visible = true;
                     stuffs = new ArrayList(1);
                     break;
 
                 case 2: //grass
-                    
-                    SortMobs(rnd.Next(),rnd);
+
+                    Lvl = lvl;
                     break;
 
                 case 3: //trap
-                    
+
+                    Lvl = lvl;
+                    rnd = new Random(DateTime.Now.Millisecond);
                     damage = rnd.Next(0, maxDamage);
                     break;
 
                 case 4: //player spawn
-                    
+
                     Visible = true;
                     break;
 
@@ -60,23 +64,26 @@ namespace RougueLike
             }
         }
 
-        void SortMobs(int chance, Random rnd )
+        public int SortMobs()
         {
-            int MaxMobs = 5;
-
-            if ((chance % 100) <= (20 + lvl / 4))
+            int flag = 0;
+            int mobQnt = 0;
+            while (flag < 5)
             {
-                int Mobs = rnd.Next(0, MaxMobs);
-
-                for (int i = 0; i <= Mobs; i++)
+                int chance = rnd.Next();
+                if ((chance % 100) <= (20 + (lvl / 4)))
                 {
-                    int id = rnd.Next(1, 5);
-                    Mob mb = new Mob(Lvl, id);
+
+                    rnd = new Random(DateTime.Now.Millisecond);
+                    int id = rnd.Next(1, 6);
+                    Mob mb = new Mob(lvl, id);
                     stuffs.Add(mb as Mob);
+                    mobQnt++;
                 }
+                flag++;
             }
 
-
+            return mobQnt;
         }
     }
 }

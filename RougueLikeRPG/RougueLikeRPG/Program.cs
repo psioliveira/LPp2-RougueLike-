@@ -34,15 +34,23 @@ namespace RougueLike
 
         bool Update(Player p)
         {
-            drw.SetVisible(world.Tworld);
+            drw.SetVisible(world);
             drw.DrawWorld(world);
-            drw.DrawHud();
+            drw.DrawHud(p,world);
+
             drw.Menu(); //ingame menu
             Console.SetCursorPosition(82, 28);
             char c = Convert.ToChar(Console.Read());
 
             Selections(c);
-
+            foreach(Tile t in world.Tworld)
+            {
+                if(t.IdTile==1 && t.Stuffs.Contains(p as Player))
+                {
+                    lvl++;
+                    GenereateWorld();
+                }
+            }
             if (p.HP > 0) return true;
             if (p.HP <= 0) return false;
             else return false;
@@ -53,6 +61,7 @@ namespace RougueLike
         void GenereateWorld()
         {
             world = new World(lvl,p);
+            p.HP = 100;
         }
 
         void Selections(char sel)
@@ -81,7 +90,7 @@ namespace RougueLike
 
                 case 'f':
                 case 'F':
-                 //   Fight(world);
+                    Fight(world);
                     break;
 
                 case 'e':
@@ -119,7 +128,7 @@ namespace RougueLike
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    foreach (IAlive a in world.Tworld[i, j].Stuffs)
+                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
                     {
                         if (a is Player && j > 0)
                         {
@@ -154,7 +163,7 @@ namespace RougueLike
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    foreach (IAlive a in world.Tworld[i, j].Stuffs)
+                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
                     {
                         if (a is Player && i < 7)
                         {
@@ -188,7 +197,7 @@ namespace RougueLike
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    foreach (IAlive a in world.Tworld[i, j].Stuffs)
+                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
                     {
                         if (a is Player && j < 7)
                         {
@@ -222,7 +231,7 @@ namespace RougueLike
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    foreach (IAlive a in world.Tworld[i, j].Stuffs)
+                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
                     {
                         if (a is Player && i > 0)
                         {
@@ -254,21 +263,32 @@ namespace RougueLike
         void Fight(World world)
         {
             drw.FightMenu();
-            int sel = Convert.ToInt32(Console.Read());
+            int sel = Convert.ToChar(Console.Read());
+            Convert.ToInt32(sel);
             foreach (Tile t in world.Tworld)
             {
-                if (t.Stuffs.Contains(p))
+                if (t.Stuffs.Contains(p) && t.Stuffs.Count >1)
                 {
-                    if(t.Stuffs[sel-1] is Mob)
+                    if (sel == 6) break;
+                    if(sel>0 && sel<=t.Stuffs.Count && t.Stuffs[sel-1] is Mob)
                     {
                         drw.MobStatus(t.Stuffs[sel] as Mob);
                     }
                     else
                     {
                         Console.SetCursorPosition(52, 3);
-                        Console.Write("Choose one valid number between 1-5");
+                        Console.Write("Choose one valid number     ");
+                        Console.SetCursorPosition(52, 4);
+                        Console.Write("between 1-5                 ");
                     }
 
+                }
+                if (t.Stuffs.Contains(p) && t.Stuffs.Count == 1)
+                {
+                    Console.SetCursorPosition(52, 3);
+                    Console.Write("There are no mobs           ");
+                    Console.SetCursorPosition(52, 4);
+                    Console.Write("in this area                ");
                 }
             }
 

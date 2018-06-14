@@ -18,7 +18,7 @@ namespace RougueLike
         }
         public int Attack(Weapon Wpn)
         {
-            Random rnd = new Random();
+            Random rnd = new Random(DateTime.Now.Millisecond);
             int damage = rnd.Next(0, Wpn.Damage);
             return damage;
 
