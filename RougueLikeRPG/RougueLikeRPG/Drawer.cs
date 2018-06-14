@@ -23,8 +23,8 @@ namespace RougueLike
                 {
                     if ((world.Tworld)[x, y].Visible)
                     {
-                        char[] c = new char[10] { '.', '.', '.', '.', '.',
-                                                  '.', '.', '.', '.', '.' };
+                        char[] c = new char[11] { '.', '.', '.', '.', '.',
+                                                  '.', '.', '.', '.', '.','.' };
                         if ((world.Tworld)[x, y].IdTile == 1)
                         {
                             c = new char[10] { 'E', 'X', 'I', 'T', '!',
@@ -43,27 +43,27 @@ namespace RougueLike
 
                             foreach (ISortable s in world.Tworld[x, y].Stuffs)
                             {
-                                if (s is Player)
+                                if (s is Player && i<10)
                                 {
                                     world.Tworld[x, y].Visible = true;
                                     c[i] = ((Player)s).GetC();
                                     i++;
                                 }
-                                if (s is Mob)
+                                if (s is Mob && i < 10)
                                 {
                                     world.Tworld[x, y].Visible = true;
 
                                     c[i] = ((Mob)s).GetC();
                                     i++;
                                 }
-                                if (s is Bag)
+                                if (s is Bag && i < 10)
                                 {
 
                                     c[i] = ((Mob)s).GetC();
                                     i++;
                                 }
 
-                                if (s is Map)
+                                if (s is Map && i < 10)
                                 {
 
                                     c[i] = ((Map)s).GetC();
@@ -102,14 +102,14 @@ namespace RougueLike
             Console.SetCursorPosition(40, 10);
             Console.WriteLine("Rouguelike Game");
 
-            Console.SetCursorPosition(42, 13);
-            Console.WriteLine("1.New Game");
-            Console.SetCursorPosition(41, 15);
-            Console.WriteLine("2.High Score");
+            Console.SetCursorPosition(40, 13);
+            Console.WriteLine("1.  New Game");
+            Console.SetCursorPosition(40, 15);
+            Console.WriteLine("2.  High Score");
             Console.SetCursorPosition(40, 17);
-            Console.WriteLine("3.Game Credits");
-            Console.SetCursorPosition(44, 19);
-            Console.WriteLine("4.Quit");
+            Console.WriteLine("3.  Game Credits");
+            Console.SetCursorPosition(40, 19);
+            Console.WriteLine("4.  Quit");
 
 
         }
@@ -258,25 +258,25 @@ namespace RougueLike
         {
 
             Console.SetCursorPosition(52, 24);
-            Console.WriteLine("W->North");
+            Console.WriteLine("W->North     ");
             Console.SetCursorPosition(52, 25);
-            Console.WriteLine("S->South");
+            Console.WriteLine("S->South     ");
             Console.SetCursorPosition(52, 26);
-            Console.WriteLine("A->West");
+            Console.WriteLine("A->West      ");
             Console.SetCursorPosition(52, 27);
-            Console.WriteLine("D->East");
+            Console.WriteLine("D->East      ");
             Console.SetCursorPosition(65, 24);
-            Console.WriteLine("F->Attack");
+            Console.WriteLine("F->Attack        ");
             Console.SetCursorPosition(65, 25);
-            Console.WriteLine("E->Loot");
+            Console.WriteLine("E->Loot          ");
             Console.SetCursorPosition(65, 26);
-            Console.WriteLine("U->Use/Equip");
+            Console.WriteLine("U->Use/Equip     ");
             Console.SetCursorPosition(65, 27);
-            Console.WriteLine("V->Drop");
+            Console.WriteLine("V->Drop                            ");
             Console.SetCursorPosition(82, 24);
-            Console.WriteLine("I->Info");
+            Console.WriteLine("I->Info           ");
             Console.SetCursorPosition(82, 25);
-            Console.WriteLine("Q->Quit");
+            Console.WriteLine("Q->Quit           ");
 
 
         }
@@ -426,6 +426,22 @@ namespace RougueLike
             {
                 t.Visible = true;
             }
+        }
+
+        public void DrawCredits()
+        {
+            Console.SetCursorPosition(46, 10);
+            Console.WriteLine("Credits");
+
+            Console.SetCursorPosition(43, 13);
+            Console.WriteLine("Pedro Oliverira");
+            Console.SetCursorPosition(44, 15);
+            Console.WriteLine("Hugo Martins");
+            
+            
+            Console.SetCursorPosition(38, 19);
+            Console.WriteLine("press any key to go back");
+
         }
 
     }
