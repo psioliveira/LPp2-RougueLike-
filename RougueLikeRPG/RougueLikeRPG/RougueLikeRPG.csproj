@@ -51,7 +51,6 @@
     <Compile Include="IHaveWeight.cs" />
     <Compile Include="ISortable.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="Menu.cs" />
     <Compile Include="Mob.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

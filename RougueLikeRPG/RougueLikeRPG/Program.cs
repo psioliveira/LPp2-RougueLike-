@@ -100,12 +100,12 @@ namespace RougueLike
 
                 case 'i':
                 case 'I':
-                    // Information(p);
+                    //Information(p);
                     break;
 
                 case 'q':
                 case 'Q':
-                    //  QuitGame();
+                    Environment.Exit(0);
                     break;
             }
         }
