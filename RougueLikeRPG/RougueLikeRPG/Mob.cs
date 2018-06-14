@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RougueLike
 {
@@ -18,10 +16,10 @@ namespace RougueLike
         public int lvl;
         private char c ;
 
-        public Mob(int lvl)
+        public Mob(int lvl,int id)
         {
             this.lvl = lvl;
-            MobType();
+            MobType(id);
         }
 
         public int MAttack()
@@ -33,9 +31,9 @@ namespace RougueLike
             
         }
 
-        public void MobType()
+        public void MobType(int id)
         {
-            int id = MobID();
+            
             Id = id;
             switch (id)
             {
@@ -78,7 +76,7 @@ namespace RougueLike
                     neutral = false;
                     bag.AddThing(new Consumable(7));
                     bag.AddThing(new Weapon(0));
-                    c = 'O';
+                    c = '$';
                     break;
 
                 case 5:
@@ -104,12 +102,6 @@ namespace RougueLike
             }
         }
 
-        public int MobID()
-        {
-            Random rnd = new Random();
-            int id = rnd.Next(1, 5);
-            return id;
-        }
 
         public char GetC()
         {

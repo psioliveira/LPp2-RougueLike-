@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RougueLike
 {
     class World
     {
         private int rows = 8, columns = 8;
-        public Tile[,] Tworld = new Tile[8,8];
+        public Tile[,] Tworld = new Tile[8, 8];
         private int _maxTraps = 0;
         private int _numOfTraps = 0;
         public int Lvl;
@@ -20,7 +18,7 @@ namespace RougueLike
         }
 
 
-        public World(int lvl)
+        public World(int lvl, Player player)
         {
             Lvl = lvl;
 
@@ -41,14 +39,15 @@ namespace RougueLike
 
                     }
 
-                    if (_numOfTraps >= MaxTraps)
+                    if (_numOfTraps == MaxTraps)
                     {
-                        Tworld[i, j] = new Tile(3, lvl);
+                        Tworld[i, j] = new Tile(2, lvl);
 
                     }
                 }
             }
 
+            SetPlayer(player);
             SetExit();
         }
 
@@ -59,11 +58,12 @@ namespace RougueLike
             Tworld[j, columns - 1] = new Tile(1, Lvl);
         }
 
-        public void SetPlayer()
+        public void SetPlayer(Player player)
         {
             Random rnd = new Random();
             int i = rnd.Next(0, 7);
-            Tworld[i,0] = new Tile(4, Lvl);
+            Tworld[i, 0] = new Tile(4, Lvl);
+            Tworld[i, 0].Stuffs.Add(player);
         }
 
         public Tile[,] GetWorld()

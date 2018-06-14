@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RougueLike
 {
@@ -31,21 +30,28 @@ namespace RougueLike
                             c = new char[10] { 'E', 'X', 'I', 'T', '!',
                                                'E', 'X', 'I', 'T', '!' };
                         }
-                        else
+
+                        if ((world.GetWorld())[x, y].IdTile == 3)
+                        {
+                            c = new char[10] { '^', '^', '^', '^', '^',
+                                               '^', '^', '^', '^', '^' };
+                        }
+                        if (world.Tworld[x, y].IdTile == 2 ||
+                            world.Tworld[x, y].IdTile == 4)
                         {
                             int i = 0;
 
-                            foreach (ISortable s in (world.GetWorld())[x, y].Stuffs)
+                            foreach (ISortable s in world.Tworld[x, y].Stuffs)
                             {
                                 if (s is Player)
                                 {
-
+                                    world.Tworld[x, y].Visible = true;
                                     c[i] = ((Player)s).GetC();
                                     i++;
                                 }
                                 if (s is Mob)
                                 {
-
+                                    world.Tworld[x, y].Visible = true;
                                     c[i] = ((Mob)s).GetC();
                                     i++;
                                 }
@@ -83,16 +89,12 @@ namespace RougueLike
             Console.Write(s2);
         }
 
-        public void DrawMenu()
+        public void MainMenu()
         {
-
-            int x = 102, y = 35;
-            Console.SetWindowSize(x, y);
-            
-            Console.SetCursorPosition(40,10);
+            Console.SetCursorPosition(40, 10);
             Console.WriteLine("Rouguelike Game");
 
-            Console.SetCursorPosition(42,13);
+            Console.SetCursorPosition(42, 13);
             Console.WriteLine("1.New Game");
             Console.SetCursorPosition(41, 15);
             Console.WriteLine("2.High Score");
@@ -100,7 +102,7 @@ namespace RougueLike
             Console.WriteLine("3.Game Credits");
             Console.SetCursorPosition(44, 19);
             Console.WriteLine("4.Quit");
-            
+
 
         }
 
@@ -220,7 +222,186 @@ namespace RougueLike
 
         }
 
+        public void FightMenu()
+        {
 
+            Console.SetCursorPosition(52, 24);
+            Console.WriteLine("Attack:");
+
+            Console.SetCursorPosition(52, 25);
+            Console.WriteLine("1.spot 1");
+            Console.SetCursorPosition(52, 26);
+            Console.WriteLine("2.spot 2");
+            Console.SetCursorPosition(52, 27);
+            Console.WriteLine("3.spot 3");
+            Console.SetCursorPosition(70, 25);
+            Console.WriteLine("4.spot 4");
+            Console.SetCursorPosition(70, 26);
+            Console.WriteLine("5.spot 5");
+            Console.SetCursorPosition(70, 27);
+            Console.WriteLine("6.RETURN");
+
+        }
+
+        public void Menu()
+        {
+
+            Console.SetCursorPosition(52, 24);
+            Console.WriteLine("W->North");
+            Console.SetCursorPosition(52, 25);
+            Console.WriteLine("S->South");
+            Console.SetCursorPosition(52, 26);
+            Console.WriteLine("A->West");
+            Console.SetCursorPosition(52, 27);
+            Console.WriteLine("D->East");
+            Console.SetCursorPosition(65, 24);
+            Console.WriteLine("F->Attack");
+            Console.SetCursorPosition(65, 25);
+            Console.WriteLine("E->Loot");
+            Console.SetCursorPosition(65, 26);
+            Console.WriteLine("U->Use/Equip");
+            Console.SetCursorPosition(65, 27);
+            Console.WriteLine("V->Drop");
+            Console.SetCursorPosition(82, 24);
+            Console.WriteLine("I->Info");
+            Console.SetCursorPosition(82, 25);
+            Console.WriteLine("Q->Quit");
+
+
+        }
+
+        public void MobStatus(Mob mob)
+        {
+            Console.SetCursorPosition(73, 17);
+            Console.WriteLine("Enemy:" + mob.Name);
+
+            if (mob.neutral)
+            {
+                Console.SetCursorPosition(73, 18);
+                Console.WriteLine("Type: neutral");
+            }
+
+            if (!mob.neutral)
+            {
+                Console.SetCursorPosition(73, 18);
+                Console.WriteLine("Type: Agressive");
+            }
+
+            Console.SetCursorPosition(73, 19);
+            Console.WriteLine("HP:" + mob.HP);
+            Console.SetCursorPosition(73, 19);
+            Console.WriteLine("lst ATK:");
+
+        }
+
+        public void PlayerStatus(Player player)
+        {
+            Console.SetCursorPosition(52, 17);
+            Console.WriteLine("You:");
+
+            Console.SetCursorPosition(52, 19);
+            Console.WriteLine("HP:" + player.HP + "/100");
+            Console.SetCursorPosition(52, 19);
+            Console.WriteLine("Cap:" + player.bag.Weight + "/100");
+
+        }
+
+        public void SetVisible(Tile[,] tiles)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    foreach (ISortable p in tiles[i, j].Stuffs)
+                    {
+                        if (p is Player)
+                        {
+                            if (i == 0)
+                            {
+                                if (j != 0 && j < 7)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j + 1].Visible = true;
+                                    tiles[i, j - 1].Visible = true;
+                                    tiles[i + 1, j].Visible = true;
+                                }
+
+                                if (j == 0)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j + 1].Visible = true;
+                                    tiles[i + 1, j].Visible = true;
+                                }
+                                if (j == 7)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j - 1].Visible = true;
+                                    tiles[i + 1, j].Visible = true;
+                                }
+                            }
+
+                            if (i > 0 && i < 7)
+                            {
+                                if (j != 0 && j < 7)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j + 1].Visible = true;
+                                    tiles[i, j - 1].Visible = true;
+
+                                    tiles[i + 1, j].Visible = true;
+                                    tiles[i - 1, j].Visible = true;
+                                }
+
+                                if (j == 0)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j + 1].Visible = true;
+
+                                    tiles[i + 1, j].Visible = true;
+                                    tiles[i - 1, j].Visible = true;
+                                }
+                                if (j == 7)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j - 1].Visible = true;
+
+                                    tiles[i + 1, j].Visible = true;
+                                    tiles[i - 1, j].Visible = true;
+                                }
+                            }
+
+                            if (i == 7)
+                            {
+                                if (j != 0 && j < 7)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j + 1].Visible = true;
+                                    tiles[i, j - 1].Visible = true;
+
+                                    tiles[i - 1, j].Visible = true;
+                                }
+
+                                if (j == 0)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j + 1].Visible = true;
+
+                                    tiles[i - 1, j].Visible = true;
+                                }
+                                if (j == 7)
+                                {
+                                    tiles[i, j].Visible = true;
+                                    tiles[i, j - 1].Visible = true;
+
+                                    tiles[i - 1, j].Visible = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
 
 
     }
