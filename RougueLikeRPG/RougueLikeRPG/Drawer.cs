@@ -36,8 +36,7 @@ namespace RougueLike
                             c = new char[10] { '^', '^', '^', '^', '^',
                                                '^', '^', '^', '^', '^' };
                         }
-                        if (world.Tworld[x, y].IdTile == 2 ||
-                            world.Tworld[x, y].IdTile == 4)
+                        if (world.Tworld[x, y].IdTile !=1)
                         {
                             int i = 0;
 

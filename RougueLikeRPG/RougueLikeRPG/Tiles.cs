@@ -24,7 +24,7 @@ namespace RougueLike
 
         public Tile(int id, int lvl)
         {
-
+            Lvl = lvl;
             TileType(id);
             IdTile = id;
 
@@ -52,6 +52,7 @@ namespace RougueLike
                     Lvl = lvl;
                     rnd = new Random(DateTime.Now.Millisecond);
                     damage = rnd.Next(0, maxDamage);
+                    stuffs = new ArrayList(1);
                     break;
 
                 case 4: //player spawn

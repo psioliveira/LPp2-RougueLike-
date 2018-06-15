@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 
 
 namespace RougueLike
@@ -21,7 +22,7 @@ namespace RougueLike
             prog.GenereateWorld();
             prog.MainMenu();
 
-            
+
         }
 
         bool Update(Player p)
@@ -32,9 +33,8 @@ namespace RougueLike
 
             drw.Menu(); //ingame menu
             Console.SetCursorPosition(82, 28);
-            char c = Convert.ToChar(Console.Read());
-
-            Selections(c);
+            ConsoleKeyInfo key = Console.ReadKey();
+            Selections(key);
             foreach (Tile t in world.Tworld)
             {
                 if (t.IdTile == 1 && t.Stuffs.Contains(p as Player))
@@ -43,6 +43,7 @@ namespace RougueLike
                     GenereateWorld();
                 }
             }
+            p.HP -= DmgToPlayer();
             if (p.HP > 0) return true;
             if (p.HP <= 0) return false;
             else return false;
@@ -54,8 +55,9 @@ namespace RougueLike
             p.HP = 100;
         }
 
-        void Selections(char sel)
+        void Selections(ConsoleKeyInfo key)
         {
+            char sel = key.KeyChar;
             switch (sel)
             {
                 case 'a':
@@ -297,6 +299,9 @@ namespace RougueLike
                 {
                     case '1':
                         Console.Clear();
+                        alive = true;
+                        p.HP = 100;
+                        world = new World(1,p);
                         while (alive == true)
                         {
                             alive = Update(p);
@@ -336,6 +341,40 @@ namespace RougueLike
         {
             flag = 1;
             Console.Clear();
+        }
+
+        public int DmgToPlayer()
+        {
+            int TotalAtk = 0;
+            foreach (Tile t in world.Tworld)
+            {
+                foreach (ISortable s in t.Stuffs)
+                {
+                    if (s is Player)
+                    {
+                        if (t.IdTile == 2)
+                        {
+                            foreach (ISortable m in t.Stuffs)
+                            {
+                                if (m is Mob)
+                                {
+                                    if (!(m as Mob).neutral)
+                                    { TotalAtk += ((Mob)m).MAttack(); }
+
+                                }
+                            }
+                        }
+
+                        if (t.IdTile == 3)
+                        {
+                            TotalAtk += t.damage;
+                        }
+                    }
+                }
+            }
+
+            return TotalAtk;
+
         }
     }
 }
