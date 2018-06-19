@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Input;
 
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     class Program
     {
@@ -102,7 +102,7 @@ namespace RougueLike
 
                 case 'i':
                 case 'I':
-                    //Information(p);
+                    Information(p);
                     break;
 
                 case 'q':
@@ -127,7 +127,7 @@ namespace RougueLike
                             pl.HP -= 1;
                             world.Tworld[i, j].Stuffs.Remove(a);
                             world.Tworld[i, j - 1].Stuffs.Add(pl);
-                            Console.SetCursorPosition(52, 3);
+                            Console.SetCursorPosition(3, 28);
                             Console.Write("You moved WEST    ");
 
                             flag = 1;
@@ -135,7 +135,7 @@ namespace RougueLike
 
                         if (j <= 0)
                         {
-                            Console.SetCursorPosition(52, 3);
+                            Console.SetCursorPosition(3, 28);
                             Console.Write("invalid moviment     ");
                         }
 
@@ -283,7 +283,11 @@ namespace RougueLike
                 }
             }
         }
+        void Information(Player player)
+        {
+            drw.Info(player);
 
+        }
 
         void MainMenu()
         {
@@ -301,7 +305,7 @@ namespace RougueLike
                         Console.Clear();
                         alive = true;
                         p.HP = 100;
-                        world = new World(1,p);
+                        world = new World(1, p);
                         while (alive == true)
                         {
                             alive = Update(p);
@@ -363,11 +367,6 @@ namespace RougueLike
 
                                 }
                             }
-                        }
-
-                        if (t.IdTile == 3)
-                        {
-                            TotalAtk += t.damage;
                         }
                     }
                 }

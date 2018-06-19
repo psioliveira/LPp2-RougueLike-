@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     class Map : ISortable
     {

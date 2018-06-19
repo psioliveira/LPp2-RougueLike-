@@ -2,14 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     class Tile
     {
-        public int damage = 0;
-        private int maxDamage = 99;
-        private bool visible = false;
-        private Bag bag = new Bag();
+        private bool visible = true;
         private int idTile = 0;
         private int lvl;
         private ArrayList stuffs = new ArrayList(5);
@@ -18,7 +15,6 @@ namespace RougueLike
         public ArrayList Stuffs { get => stuffs; set => stuffs = value; }
         public int Lvl { get => lvl; set => lvl = value; }
         public int IdTile { get => idTile; set => idTile = value; }
-        public Bag Bag { get => bag; set => bag = value; }
         public bool Visible { get => visible; set => visible = value; }
 
 
@@ -47,14 +43,6 @@ namespace RougueLike
                     Lvl = lvl;
                     break;
 
-                case 3: //trap
-
-                    Lvl = lvl;
-                    rnd = new Random(DateTime.Now.Millisecond);
-                    damage = rnd.Next(0, maxDamage);
-                    stuffs = new ArrayList(1);
-                    break;
-
                 case 4: //player spawn
 
                     Visible = true;
@@ -67,25 +55,45 @@ namespace RougueLike
 
         public int SortMobs()
         {
-            int flag = 0;
+
             int mobQnt = 0;
-            while (flag < 5)
+            int ofset = (20 + (lvl / 4));
+            int chance = rnd.Next();
+            int mobNumb = 0;
+            foreach (ISortable s in Stuffs)
             {
-                flag++;
-                int chance = rnd.Next();
-                if ((chance % 100) <= (20 + (lvl / 4)))
-                {
-
-                    rnd = new Random(DateTime.Now.Millisecond);
-                    int id = rnd.Next(1, 6);
-                    Mob mb = new Mob(lvl, id);
-                    stuffs.Add(mb as Mob);
-                    mobQnt++;
-                }
-                
+                if (s is Mob) { mobNumb++; }
             }
-
+            if ((chance % 100) <= ofset && mobNumb < 5)
+            {
+                
+                int id = rnd.Next(1, 6);
+                Mob mb = new Mob(lvl, id);
+                stuffs.Add(mb as Mob);
+                mobQnt++;
+            }
             return mobQnt;
+        }
+
+
+        public int SortTraps()
+        {
+
+            int trapQnt = 0;
+            int ofset = (20 + (lvl / 4));
+            int chance = rnd.Next();
+            int trapNumb = 0;
+
+            foreach (Trap t in Stuffs) { trapNumb++; }
+            if ((chance % 100) <= ofset && trapNumb < 2)
+            {
+                
+                int id = rnd.Next(1, 4);
+                Trap tp = new Trap(lvl, id);
+                stuffs.Add(tp as Trap);
+                trapQnt++;
+            }
+            return trapQnt;
         }
     }
 }

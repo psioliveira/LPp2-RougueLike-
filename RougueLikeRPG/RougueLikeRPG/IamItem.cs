@@ -1,6 +1,6 @@
 ﻿
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     public interface IAmItem:IHaveWeight
     {

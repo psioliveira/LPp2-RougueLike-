@@ -1,6 +1,6 @@
 ﻿
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     interface ISortable
     {

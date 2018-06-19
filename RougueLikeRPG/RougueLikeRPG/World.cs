@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     class World
     {
@@ -16,14 +16,14 @@ namespace RougueLike
         public bool map = false;
         Random rnd = new Random(DateTime.Now.Millisecond);
 
-        
+
         public int MaxMobs { get => maxMobs; set => maxMobs = value; }
 
         public World(int lvl, Player player)
         {
             Lvl = lvl;
             MaxMobs = 1 + (lvl / 4);
-            MaxTraps = (int)Math.Pow(Lvl, 0.4f)*2;
+            MaxTraps = (int)Math.Pow(Lvl, 0.4f) * 2;
 
             for (int i = 0; i < rows; i++)
             {
@@ -96,12 +96,10 @@ namespace RougueLike
                 int j = rnd.Next(0, 7);
                 if (Tworld[i, j].IdTile == 2 && _numOfTraps < MaxTraps)
                 {
-                    Tworld[i, j] = new Tile(3,Lvl);
-                    _numOfTraps += 1;
+                    _numOfTraps += Tworld[i, j].SortTraps();
                 }
             }
         }
 
-       
     }
 }

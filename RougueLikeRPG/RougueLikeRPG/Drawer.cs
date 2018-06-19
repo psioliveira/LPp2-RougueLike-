@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     class Drawer
     {
@@ -22,47 +22,49 @@ namespace RougueLike
                 for (int y = 0; y < ypos; y++)
                 {
                     if ((world.Tworld)[x, y].Visible)
-                    {
+                    { //caso o tile seja visível
+
                         char[] c = new char[11] { '.', '.', '.', '.', '.',
                                                   '.', '.', '.', '.', '.','.' };
-                        if ((world.Tworld)[x, y].IdTile == 1)
+
+                        if ((world.Tworld)[x, y].IdTile == 1) //caso o tile seja a saída
                         {
-                            c = new char[10] { 'E', 'X', 'I', 'T', '!',
-                                               'E', 'X', 'I', 'T', '!' };
+                            c = new char[10]  { 'E', 'X', 'I', 'T', '!',
+                                                'E', 'X', 'I', 'T', '!' };
                         }
 
-                        if ((world.Tworld)[x, y].IdTile == 3)
-                        {
-                            c = new char[10] { '^', '^', '^', '^', '^',
-                                               '^', '^', '^', '^', '^' };
-                        }
-                        if (world.Tworld[x, y].IdTile !=1)
-                        {
+                        if (world.Tworld[x, y].IdTile != 1)
+                        { //caso o tile não seja a saída
                             int i = 0;
 
                             foreach (ISortable s in world.Tworld[x, y].Stuffs)
                             {
-                                if (s is Player && i<10)
+                                if (s is Player && i < 10) //se exixtir o player no tile
                                 {
                                     world.Tworld[x, y].Visible = true;
                                     c[i] = ((Player)s).GetC();
                                     i++;
                                 }
-                                if (s is Mob && i < 10)
-                                {
-                                    world.Tworld[x, y].Visible = true;
-
-                                    c[i] = ((Mob)s).GetC();
-                                    i++;
-                                }
-                                if (s is Bag && i < 10)
+                                if (s is Mob && i < 10) //se exixtir um mob no tile
                                 {
 
                                     c[i] = ((Mob)s).GetC();
                                     i++;
                                 }
+                                if (s is Trap && i < 10)  //se exixtir uma trap no tile
+                                {
 
-                                if (s is Map && i < 10)
+                                    c[i] = ((Trap)s).GetC();
+                                    i++;
+                                }
+                                if (s is Bag && i < 10)  //se exixtir uma bag no tile
+                                {
+
+                                    c[i] = ((Mob)s).GetC();
+                                    i++;
+                                }
+
+                                if (s is Map && i < 10) // se exixtir um mapa no tile
                                 {
 
                                     c[i] = ((Map)s).GetC();
@@ -72,7 +74,13 @@ namespace RougueLike
                         }
                         PrintTile(c, y, x);
                     }
-                    if (!world.Tworld[x, y].Visible)
+
+                    if ((world.Tworld)[x, y].IdTile == 1) //caso o tile seja a saída
+                    {
+                        char[] c = new char[10]  { 'E', 'X', 'I', 'T', '!',
+                                                   'E', 'X', 'I', 'T', '!' };
+                    }
+                    if (!world.Tworld[x, y].Visible) // caso o tile não seja visível
                     {
                         char[] c = new char[10] { '*', '*', '*', '*', '*',
                                                   '*', '*', '*', '*', '*' };
@@ -418,7 +426,6 @@ namespace RougueLike
 
         }
 
-
         private void ShowWorld(Tile[,] tiles)
         {
             foreach (Tile t in tiles)
@@ -436,10 +443,15 @@ namespace RougueLike
             Console.WriteLine("Pedro Oliverira");
             Console.SetCursorPosition(44, 15);
             Console.WriteLine("Hugo Martins");
-            
-            
+
+
             Console.SetCursorPosition(38, 19);
             Console.WriteLine("press any key to go back");
+
+        }
+
+        public void Info(Player player)
+        {
 
         }
 

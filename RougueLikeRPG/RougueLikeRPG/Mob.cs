@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     public class Mob : IAlive, ISortable
     {
@@ -48,7 +48,7 @@ namespace RougueLike
                     Damage = 0;
                     neutral = true;
                     bag.AddThing(new Consumable(6));
-                    c = 'r';
+                    c = 'a';
                     break;
 
                 case 2:
@@ -57,7 +57,7 @@ namespace RougueLike
                     Damage = 5;
                     neutral = true;
                     bag.AddThing(new Consumable(4));
-                    c = 'G';
+                    c = 'b';
                     break;
 
                 case 3:
@@ -66,7 +66,7 @@ namespace RougueLike
                     Damage = 10;
                     neutral = false;
                     bag.AddThing(new Consumable(7));
-                    c = 'T';
+                    c = 'c';
                     break;
 
                 case 4:
@@ -76,7 +76,7 @@ namespace RougueLike
                     neutral = false;
                     bag.AddThing(new Consumable(7));
                     bag.AddThing(new Weapon(0));
-                    c = '$';
+                    c = 'd';
                     break;
 
                 case 5:
@@ -86,7 +86,7 @@ namespace RougueLike
                     neutral = false;
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Weapon(6));
-                    c = 'Y';
+                    c = 'e';
                     break;
 
                 case 6:
@@ -97,7 +97,7 @@ namespace RougueLike
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Consumable(8));
                     bag.AddThing(new Weapon(4));
-                    c = 'B';
+                    c = 'f';
                     break;
             }
         }

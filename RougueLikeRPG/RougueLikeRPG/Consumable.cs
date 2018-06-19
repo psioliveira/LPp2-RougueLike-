@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     public class Consumable : IFood, IAmItem
     {

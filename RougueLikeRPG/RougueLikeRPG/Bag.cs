@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace RougueLike
+namespace RougueLikeRPG
 {
     public class Bag : ISortable
     {
