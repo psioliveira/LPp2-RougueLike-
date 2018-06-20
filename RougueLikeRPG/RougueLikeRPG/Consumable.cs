@@ -20,6 +20,7 @@ namespace RougueLikeRPG
             FoodName(Id);
         }
 
+        /// <summary>metodo que define qual tipo de consumivel será </summary>
         void FoodName(int id)
         {
             switch (id)

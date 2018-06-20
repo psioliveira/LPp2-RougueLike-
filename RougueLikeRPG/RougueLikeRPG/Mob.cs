@@ -4,6 +4,7 @@ using System.Text;
 
 namespace RougueLikeRPG
 {
+    /// <summary>classe que gera os mobs do jogo </summary>
     public class Mob : IAlive, ISortable
     {
         public string Name { get; set; }
@@ -30,6 +31,7 @@ namespace RougueLikeRPG
             
         }
 
+        /// <summary>metodo que define qual tipo de mob será criado </summary>
         public void MobType(int id)
         {
             

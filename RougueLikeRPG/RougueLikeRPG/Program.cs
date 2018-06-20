@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace RougueLikeRPG
 {
+    /// <summary>Classe na qual se encontra o corpo principal do jogo </summary>
     class Program
     {
         int lvl = 1;
@@ -15,6 +16,7 @@ namespace RougueLikeRPG
         bool alive = true;
         private Drawer drw = new Drawer();
         int mapTaken = 0;
+
 
         static void Main(string[] args)
         {
@@ -27,6 +29,7 @@ namespace RougueLikeRPG
 
         }
 
+        /// <summary>update do mundo </summary>
         bool Update(Player p)
         {
             drw.SetVisible(world);
@@ -51,6 +54,7 @@ namespace RougueLikeRPG
             else return false;
         }
 
+        /// <summary>criação do mundo </summary>
         void GenereateWorld()
         {
             world = new World(lvl, p);
@@ -58,6 +62,7 @@ namespace RougueLikeRPG
             p.HP = 100;
         }
 
+        /// <summary>possíveis seleções do player </summary>
         void Selections(ConsoleKeyInfo key, int map)
         {
 
@@ -118,7 +123,7 @@ namespace RougueLikeRPG
             }
         }
 
-
+        /// <summary>menu  inicial </summary>
         void MainMenu()
         {
             int sel;
@@ -162,6 +167,7 @@ namespace RougueLikeRPG
 
         }
 
+        /// <summary>movimentações do player no mundo </summary>
         void MovWest(Player player)
         {
             int flag = 0;
@@ -302,6 +308,7 @@ namespace RougueLikeRPG
 
         }
 
+        /// <summary>Chama as informações do jogo </summary>
         void Information(Player player)
         {
             drw.Info(player);
@@ -315,6 +322,7 @@ namespace RougueLikeRPG
             Selections(key, mapTaken);
 
         }
+        /// <summary>Pegar o mapa do cenário </summary>
         int PickMap(World world, int map)
         {
             map = 1;
@@ -341,6 +349,7 @@ namespace RougueLikeRPG
             }
             return map;
         }
+        /// <summary>Chama a tela de créditos </summary>
         void Credits()
         {
             drw.DrawCredits();
@@ -350,12 +359,15 @@ namespace RougueLikeRPG
             MainMenu();
 
         }
+
+        /// <summary>flag para retornar ao jogo </summary>
         void PlayGame(int flag)
         {
             flag = 1;
             Console.Clear();
         }
 
+        /// <summary>ataque dos mobs e dano das traps ao jogador </summary>
         public int DmgToPlayer()
         {
             int TotalAtk = 0;

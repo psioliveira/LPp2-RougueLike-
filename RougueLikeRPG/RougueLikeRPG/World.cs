@@ -4,6 +4,7 @@ using System.Text;
 
 namespace RougueLikeRPG
 {
+    /// <summary>classe responsável por gerar o mundo do jogo </summary>
     class World
     {
         private int rows = 8, columns = 8;
@@ -19,6 +20,7 @@ namespace RougueLikeRPG
 
         public int MaxMobs { get => maxMobs; set => maxMobs = value; }
 
+        /// <summary>adiciona o player, mobs, traps e saída </summary>
         public World(int lvl, Player player)
         {
             Lvl = lvl;
@@ -40,6 +42,7 @@ namespace RougueLikeRPG
             SetMap();
         }
 
+        /// <summary>função que gera a saída </summary>
         public void SetExit()
         {
 
@@ -47,6 +50,7 @@ namespace RougueLikeRPG
             Tworld[j, columns - 1] = new Tile(1, Lvl);
         }
 
+        /// <summary>função que gera o player </summary>
         public void SetPlayer(Player player)
         {
 
@@ -56,6 +60,7 @@ namespace RougueLikeRPG
             Tworld[i, 0].Stuffs.Add(player);
         }
 
+        /// <summary>metodo que adiciona os mobs </summary>
         public void SetMobs()
         {
             while (_numOfMobs < MaxMobs)
@@ -71,6 +76,7 @@ namespace RougueLikeRPG
 
         }
 
+        /// <summary>metodo que adiciona o mapa </summary>
         public void SetMap()
         {
             while (!map)
@@ -87,6 +93,7 @@ namespace RougueLikeRPG
             }
         }
 
+        /// <summary>metodo que adiciona as traps </summary>
         public void SetTrap()
         {
             while (_numOfTraps < MaxTraps)

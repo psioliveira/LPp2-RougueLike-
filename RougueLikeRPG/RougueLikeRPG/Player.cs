@@ -4,6 +4,7 @@ using System.Text;
 
 namespace RougueLikeRPG
 {
+    /// <summary>Classe responsável por criar o player </summary>
     class Player : IAlive, ISortable
     {
         public string Name { get; set; }
@@ -16,6 +17,7 @@ namespace RougueLikeRPG
         {
 
         }
+        /// <summary>metodo que retorna o dano do player </summary>
         public int Attack(Weapon Wpn)
         {
             Random rnd = new Random(DateTime.Now.Millisecond);
@@ -23,6 +25,7 @@ namespace RougueLikeRPG
             return damage;
 
         }
+        /// <summary>retorna caractere que representa o player </summary>
         public char GetC()
         {
             return c;

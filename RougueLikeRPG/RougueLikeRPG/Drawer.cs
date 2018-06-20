@@ -7,12 +7,17 @@ namespace RougueLikeRPG
 {
     class Drawer
     {
+        /// <summary>
+        /// Classe que tem como função imprimir o jogo na tela, assim como os menus
+        /// </summary>
+        
 
         public Drawer()
         {
 
         }
 
+        /// <summary>Metodo que desenha o mundo do jogo</summary>
         public void DrawWorld(World world)
         {
             ClearGameWindow();
@@ -91,6 +96,7 @@ namespace RougueLikeRPG
             }
         }
 
+        /// <summary> Metodo para imprimir o tile selecionado no ecrã </summary>
         void PrintTile(char[] c, int x, int y)
         {
             int xOfset = 2 + (x * 5);
@@ -103,7 +109,7 @@ namespace RougueLikeRPG
             Console.SetCursorPosition(x + xOfset, y + yOfset + 1);
             Console.Write(s2);
         }
-
+        /// <summary>Metodo que desenha o menu principal</summary>
         public void MainMenu()
         {
             Console.SetCursorPosition(40, 10);
@@ -120,7 +126,7 @@ namespace RougueLikeRPG
 
 
         }
-
+        /// <summary>Metodo que desenha o cabeçalho e a parte estética do hud</summary>
         public void DrawHud(Player player, World world)
         {
             DrawHead(world.Lvl);
@@ -128,7 +134,7 @@ namespace RougueLikeRPG
             DrawFoot();
             PlayerStatus(player);
         }
-
+        /// <summary>Cabeçalho</summary>
         private void DrawHead(int lvl)
         {
             Console.SetCursorPosition(0, 0);
@@ -145,12 +151,16 @@ namespace RougueLikeRPG
             Console.SetCursorPosition(42, 2);
             Console.Write("LVL " + lvl);
         }
+
+        /// <summary>rodapé</summary>
         private void DrawFoot()
         {
             Console.SetCursorPosition(0, 29);
             Console.Write("+--------------------------------------------------" +
                            "-------------------------------------------------+");
         }
+
+        /// <summary>interior do hud</summary>
         private void DrawBody()
         {
             int x = 0;
@@ -213,6 +223,7 @@ namespace RougueLikeRPG
             Console.Write("-SELECTION--------------------------------------+");
 
         }
+        /// <summary>Metodo que desenha o mundo do jogo</summary>
         private void Chart()
         {
             Console.SetCursorPosition(82, 4);
@@ -240,6 +251,7 @@ namespace RougueLikeRPG
 
         }
 
+        /// <summary> Menu de ataque </summary>
         public void FightMenu()
         {
 
@@ -260,7 +272,7 @@ namespace RougueLikeRPG
             Console.WriteLine("6.RETURN");
 
         }
-
+        /// <summary> Menu interno </summary>
         public void Menu()
         {
 
@@ -288,6 +300,7 @@ namespace RougueLikeRPG
 
         }
 
+        /// <summary>Informações do mob</summary>
         public void MobStatus(Mob mob)
         {
             Console.SetCursorPosition(73, 17);
@@ -312,6 +325,7 @@ namespace RougueLikeRPG
 
         }
 
+        /// <summary>Informações do player </summary>
         public void PlayerStatus(Player player)
         {
             Console.SetCursorPosition(52, 17);
@@ -323,7 +337,7 @@ namespace RougueLikeRPG
             Console.WriteLine("Cap:" + player.bag.Weight + "/100   ");
 
         }
-
+        /// <summary> tornar o mapa visivel de acordo com o player</summary>
         public void SetVisible(World world)
         {
             Tile[,] tiles = world.Tworld;
@@ -421,7 +435,7 @@ namespace RougueLikeRPG
             }
 
         }
-
+        /// <summary>Informações do player </summary>
         public void ShowWorld(Tile[,] tiles)
         {
             foreach (Tile t in tiles)
@@ -430,6 +444,7 @@ namespace RougueLikeRPG
             }
         }
 
+        /// <summary>desenha os créditos dos desenvolvedores do jogo </summary>
         public void DrawCredits()
         {
             Console.SetCursorPosition(46, 10);
@@ -446,6 +461,7 @@ namespace RougueLikeRPG
 
         }
 
+        /// <summary>Informações do player </summary>
         public void Info(Player player)
         {
             ClearGameWindow();
@@ -454,6 +470,7 @@ namespace RougueLikeRPG
             PrintWeapon();
         }
 
+        /// <summary>Limpa a tela de jogo </summary>
         public void ClearGameWindow()
         {
             for (int i = 3; i < 29; i++)
@@ -463,6 +480,8 @@ namespace RougueLikeRPG
                               "                        ");
             }
         }
+
+        /// <summary>Informações dos consumiveis </summary>
         public void PrintConsumable()
         {
             Console.SetCursorPosition(2, 4);
@@ -488,6 +507,7 @@ namespace RougueLikeRPG
             Console.SetCursorPosition(2, 14);
             Console.Write("Strong Health Pot+80 HP           50 WGT");
         }
+        /// <summary>Informações das armas e traps </summary>
         public void PrintWeapon()
         {
             Console.SetCursorPosition(2, 17);
@@ -500,6 +520,7 @@ namespace RougueLikeRPG
             Console.Write("Sword         20 DMG   0.5 DUR    36 WGT ");
             Console.SetCursorPosition(2, 22);
             Console.Write("Katana        40 DMG   0.8 DUR    28 WGT ");
+
             Console.SetCursorPosition(2, 24);
             Console.Write("Traps:");
             Console.SetCursorPosition(2, 25);
