@@ -220,7 +220,7 @@ namespace RougueLikeRPG
             Console.SetCursorPosition(82, 5);
             Console.Write("r-RABBIT");
             Console.SetCursorPosition(82, 6);
-            Console.Write("G-GOBLIN");
+            Console.Write("g-GOBLIN");
             Console.SetCursorPosition(82, 7);
             Console.Write("T-TROLL");
             Console.SetCursorPosition(82, 8);
