@@ -46,7 +46,7 @@ namespace RougueLikeRPG
                     HP = 2;
                     Damage = 0;
                     neutral = true;
-                    c = 'a';
+                    c = 'r';
                     break;
 
                 case 2:
@@ -54,7 +54,7 @@ namespace RougueLikeRPG
                     HP = 15;
                     Damage = 5;
                     neutral = true;
-                    c = 'b';
+                    c = 'g';
                     break;
 
                 case 3:
@@ -62,7 +62,7 @@ namespace RougueLikeRPG
                     HP = 45;
                     Damage = 10;
                     neutral = false;
-                    c = 'c';
+                    c = 'T';
                     break;
 
                 case 4:
@@ -70,7 +70,7 @@ namespace RougueLikeRPG
                     HP = 60;
                     Damage = 20;
                     neutral = false;
-                    c = 'd';
+                    c = 'O';
                     break;
 
                 case 5:
@@ -78,7 +78,7 @@ namespace RougueLikeRPG
                     HP = 80;
                     Damage = 40;
                     neutral = false;
-                    c = 'e';
+                    c = 'Y';
                     break;
             }
         }

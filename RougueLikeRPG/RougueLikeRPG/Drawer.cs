@@ -228,15 +228,15 @@ namespace RougueLikeRPG
             Console.SetCursorPosition(82, 9);
             Console.Write("Y-MINOTAUR");
             Console.SetCursorPosition(82, 10);
-            Console.Write("B-BUNNY OF DOOM");
-            Console.SetCursorPosition(82, 11);
-            Console.Write("&-LOOT");
-            Console.SetCursorPosition(82, 12);
             Console.Write("M-MAP");
-            Console.SetCursorPosition(82, 13);
+            Console.SetCursorPosition(82, 11);
             Console.Write(".-GRASS");
-            Console.SetCursorPosition(82, 14);
+            Console.SetCursorPosition(82, 12);
             Console.Write("^-TRAP");
+            
+            
+            
+            
 
         }
 
