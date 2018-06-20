@@ -11,7 +11,6 @@ namespace RougueLikeRPG
         public int Damage { get; set; } = 0;
         public bool neutral = true;
         public int Id { get; set; } = 0;
-        public Bag bag = new Bag();
         private int Multiplier;
         public int lvl;
         private char c ;
@@ -47,7 +46,6 @@ namespace RougueLikeRPG
                     HP = 2;
                     Damage = 0;
                     neutral = true;
-                    bag.AddThing(new Consumable(6));
                     c = 'a';
                     break;
 
@@ -56,7 +54,6 @@ namespace RougueLikeRPG
                     HP = 15;
                     Damage = 5;
                     neutral = true;
-                    bag.AddThing(new Consumable(4));
                     c = 'b';
                     break;
 
@@ -65,7 +62,6 @@ namespace RougueLikeRPG
                     HP = 45;
                     Damage = 10;
                     neutral = false;
-                    bag.AddThing(new Consumable(7));
                     c = 'c';
                     break;
 
@@ -74,8 +70,6 @@ namespace RougueLikeRPG
                     HP = 60;
                     Damage = 20;
                     neutral = false;
-                    bag.AddThing(new Consumable(7));
-                    bag.AddThing(new Weapon(0));
                     c = 'd';
                     break;
 
@@ -84,20 +78,7 @@ namespace RougueLikeRPG
                     HP = 80;
                     Damage = 40;
                     neutral = false;
-                    bag.AddThing(new Consumable(8));
-                    bag.AddThing(new Weapon(6));
                     c = 'e';
-                    break;
-
-                case 6:
-                    Name = "Bunny of Doom";
-                    HP = 120;
-                    Damage = 45;
-                    neutral = false;
-                    bag.AddThing(new Consumable(8));
-                    bag.AddThing(new Consumable(8));
-                    bag.AddThing(new Weapon(4));
-                    c = 'f';
                     break;
             }
         }

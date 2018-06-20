@@ -498,18 +498,18 @@ namespace RougueLikeRPG
             Console.SetCursorPosition(2, 19);
             Console.Write("Club          08 DMG   0.3 DUR    34 WGT ");
             Console.SetCursorPosition(2, 20);
-            Console.Write("Staff         10 DMG   0.4 DUR    20 WGT ");
-            Console.SetCursorPosition(2, 21);
             Console.Write("Dagger        15 DMG   0.7 DUR    12 WGT ");
-            Console.SetCursorPosition(2, 22);
+            Console.SetCursorPosition(2, 21);
             Console.Write("Sword         20 DMG   0.5 DUR    36 WGT ");
-            Console.SetCursorPosition(2, 23);
-            Console.Write("Katana        30 DMG   0.8 DUR    28 WGT ");
+            Console.SetCursorPosition(2, 22);
+            Console.Write("Katana        40 DMG   0.8 DUR    28 WGT ");
             Console.SetCursorPosition(2, 24);
-            Console.Write("Broad sword   38 DMG   0.6 DUR    40 WGT ");
+            Console.Write("Traps:");
             Console.SetCursorPosition(2, 25);
-            Console.Write("Excalibur     60 DMG   1.0 DUR    50 WGT ");
-            Console.SetCursorPosition(3, 26);
+            Console.Write("Banana peel   05 DMG   Spikes     10 DMG ");
+            Console.SetCursorPosition(2, 26);
+            Console.Write("Poison Spikes 20 DMG   HellPit    50 DMG");
+            Console.SetCursorPosition(3, 28);
             Console.Write("ANY KEY TO RETURN  ");
 
         }
