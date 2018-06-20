@@ -454,34 +454,6 @@ namespace RougueLikeRPG
             PrintWeapon();
         }
 
-        public void GroundLoot(Tile tile)
-        {
-            ClearGameWindow();
-            Console.SetCursorPosition(2, 4);
-            Console.Write("select items to catch:");
-            int i = 6;
-
-            foreach (ISortable s in tile.Stuffs)
-            {
-                if (s is IAmItem)
-                {
-                    IAmItem o = s as IAmItem;
-
-                    Console.SetCursorPosition(2, i);
-                    Console.Write(i - 6 + "." + o.Name + " " + o.Weight + "WGT");
-                    i++;
-                    if (i >= 16) { break; }
-                }
-               
-            }
-            Console.SetCursorPosition(2, 26);
-            Console.Write("Select using numbers 0-9:  ");
-            Console.SetCursorPosition(2, 27);
-            Console.Write("Press enter to confirm the number.  ");
-
-        }
-
-
         public void ClearGameWindow()
         {
             for (int i = 3; i < 29; i++)
