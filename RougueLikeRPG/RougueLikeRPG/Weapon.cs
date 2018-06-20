@@ -39,7 +39,7 @@ namespace RougueLikeRPG
                     name = "Dagger";
                     Damage = 15;
                     Weight = 12;
-                    durability = 0.5f;
+                    durability = 0.7f;
 
                     break;
 

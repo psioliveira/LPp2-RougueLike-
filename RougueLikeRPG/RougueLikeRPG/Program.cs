@@ -286,6 +286,14 @@ namespace RougueLikeRPG
         void Information(Player player)
         {
             drw.Info(player);
+            Console.ReadKey();
+
+            drw.SetVisible(world);
+            drw.DrawWorld(world);
+            drw.DrawHud(p, world);
+            Console.SetCursorPosition(82, 28);
+            ConsoleKeyInfo key = Console.ReadKey();
+            Selections(key);
 
         }
 

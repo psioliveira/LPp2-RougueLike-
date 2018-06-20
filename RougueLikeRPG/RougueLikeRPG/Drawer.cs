@@ -15,7 +15,7 @@ namespace RougueLikeRPG
 
         public void DrawWorld(World world)
         {
-
+            ClearGameWindow();
             int xpos = 8, ypos = 8;
             for (int x = 0; x < xpos; x++)
             {
@@ -452,8 +452,66 @@ namespace RougueLikeRPG
 
         public void Info(Player player)
         {
+            ClearGameWindow();
+
+            PrintConsumable();
+            PrintWeapon();
+        }
+        public void ClearGameWindow()
+        {
+            for(int i = 3; i < 28; i++)
+            {
+                Console.SetCursorPosition(1, i);
+                Console.Write("                         " +
+                              "                        ");
+            }
+        }
+        public void PrintConsumable()
+        {
+            Console.SetCursorPosition(2, 4);
+            Console.Write("Info:");
+            Console.SetCursorPosition(2, 6);
+            Console.Write("consumable:");
+            Console.SetCursorPosition(2, 6);
+            Console.Write("consumable:");
+            Console.SetCursorPosition(2, 7);
+            Console.Write("cherry           +05 HP           01 WGT ");
+            Console.SetCursorPosition(2, 8);
+            Console.Write("Tomato           +09 HP           02 WGT ");
+            Console.SetCursorPosition(2, 9);
+            Console.Write("Bread            +10 HP           04 WGT");
+            Console.SetCursorPosition(2, 10);
+            Console.Write("Cheese           +14 HP           03 WGT");
+            Console.SetCursorPosition(2, 11);
+            Console.Write("Meat             +15 HP           10 WGT");
+            Console.SetCursorPosition(2, 12);
+            Console.Write("Fish             +20 HP           08 WGT");
+            Console.SetCursorPosition(2, 13);
+            Console.Write("Health Pot       +50 HP           13 WGT");
+            Console.SetCursorPosition(2, 14);
+            Console.Write("Strong Health Pot+80 HP           50 WGT");
+        }
+        public void PrintWeapon()
+        {
+            Console.SetCursorPosition(2, 17);
+            Console.Write("Weapons:");
+            Console.SetCursorPosition(2, 19);
+            Console.Write("Club          08 DMG   0.3 DUR    34 WGT ");
+            Console.SetCursorPosition(2, 20);
+            Console.Write("Staff         10 DMG   0.4 DUR    20 WGT ");
+            Console.SetCursorPosition(2, 21);
+            Console.Write("Dagger        15 DMG   0.7 DUR    12 WGT ");
+            Console.SetCursorPosition(2, 22);
+            Console.Write("Sword         20 DMG   0.5 DUR    36 WGT ");
+            Console.SetCursorPosition(2, 23);
+            Console.Write("Katana        30 DMG   0.8 DUR    28 WGT ");
+            Console.SetCursorPosition(2, 24);
+            Console.Write("Broad sword   38 DMG   0.6 DUR    40 WGT ");
+            Console.SetCursorPosition(2, 25);
+            Console.Write("Excalibur     60 DMG   1.0 DUR    50 WGT ");
+            Console.SetCursorPosition(3, 26);
+            Console.Write("ANY KEY TO RETURN  ");
 
         }
-
     }
 }
