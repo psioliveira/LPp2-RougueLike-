@@ -5,13 +5,9 @@ using System.Text;
 
 namespace RougueLikeRPG
 {
+    /// <summary>Classe na qual se encontra as funções de impressão do jogo </summary>
     class Drawer
     {
-        /// <summary>
-        /// Classe que tem como função imprimir o jogo na tela, assim como os menus
-        /// </summary>
-        
-
         public Drawer()
         {
 
@@ -244,10 +240,10 @@ namespace RougueLikeRPG
             Console.Write(".-GRASS");
             Console.SetCursorPosition(82, 12);
             Console.Write("^-TRAP");
-            
-            
-            
-            
+
+
+
+
 
         }
 

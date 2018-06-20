@@ -4,6 +4,9 @@ using System.Text;
 
 namespace RougueLikeRPG
 {
+    /// <summary>
+    /// Classe que representa o mapa 
+    /// </summary>
     class Map : ISortable
     {
         private char c = 'M';

@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace RougueLikeRPG
-{
+{/// <summary>
+ /// Classe que representa os tiles do mundo
+ /// </summary>
     class Tile
     {
         private bool visible = false;

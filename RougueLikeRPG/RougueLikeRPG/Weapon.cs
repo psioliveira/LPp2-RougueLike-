@@ -3,6 +3,9 @@
 
 namespace RougueLikeRPG
 {
+    /// <summary>
+    /// Classe que representa as armas do jogo
+    /// </summary>
     class Weapon : IHaveWeight, IAmItem
     {
         public string Name { get; set; } = " ";

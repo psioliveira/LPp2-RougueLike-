@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace RougueLikeRPG
 {
+    /// <summary>
+    /// Classe que representa alimentos ou itens de cura
+    /// </summary>
     public class Consumable : IFood, IAmItem
     {
-        /// <summary>
-        /// Classe que representa alimentos ou itens de cura
-        /// </summary>
+        
 
         public string Name { get; set; } = " ";
         public int HpIncrease { get; set; } = 0;

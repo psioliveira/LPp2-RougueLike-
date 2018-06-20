@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RougueLikeRPG
-{
+{/// <summary>
+ /// Classe que representa as traps
+ /// </summary>
+ /// 
     class Trap : ISortable
     {
         public string Name { get; set; }

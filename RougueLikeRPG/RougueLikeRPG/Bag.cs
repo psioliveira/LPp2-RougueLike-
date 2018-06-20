@@ -3,13 +3,14 @@ using System.Collections;
 
 namespace RougueLikeRPG
 {
+    /// <summary>
+    /// Classe que representa uma mochila ou saco que contem itens
+    /// </summary>
+    /// <summary>Array que contém os itens da mochila</summary>
     public class Bag : ISortable
     {
 
-        /// <summary>
-        /// Classe que representa uma mochila ou saco que contem itens
-        /// </summary>
-        /// <summary>Array que contém os itens da mochila</summary>
+        
         public ArrayList items;
         private char c = '&';
 
