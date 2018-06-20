@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -13,6 +14,7 @@ namespace RougueLikeRPG
         World world;
         bool alive = true;
         private Drawer drw = new Drawer();
+        int mapTaken = 0;
 
         static void Main(string[] args)
         {
@@ -34,7 +36,7 @@ namespace RougueLikeRPG
             drw.Menu(); //ingame menu
             Console.SetCursorPosition(82, 28);
             ConsoleKeyInfo key = Console.ReadKey();
-            Selections(key);
+            Selections(key, mapTaken);
             foreach (Tile t in world.Tworld)
             {
                 if (t.IdTile == 1 && t.Stuffs.Contains(p as Player))
@@ -52,11 +54,13 @@ namespace RougueLikeRPG
         void GenereateWorld()
         {
             world = new World(lvl, p);
+            mapTaken = 0;
             p.HP = 100;
         }
 
-        void Selections(ConsoleKeyInfo key)
+        void Selections(ConsoleKeyInfo key, int map)
         {
+
             char sel = key.KeyChar;
             switch (sel)
             {
@@ -82,22 +86,24 @@ namespace RougueLikeRPG
 
                 case 'f':
                 case 'F':
-                    Fight(world);
+
                     break;
 
                 case 'e':
                 case 'E':
-                    //PickLoot(world);
+
+                    if (map == 0)
+                    {
+                        map = PickMap(world, map);
+                    }
                     break;
 
                 case 'u':
                 case 'U':
-                    // UseItem(p);
                     break;
 
                 case 'v':
                 case 'V':
-                    // DropItem(p, world);
                     break;
 
                 case 'i':
@@ -112,190 +118,6 @@ namespace RougueLikeRPG
             }
         }
 
-        void MovWest(Player player)
-        {
-            int flag = 0;
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
-                    {
-                        if (a is Player && j > 0)
-                        {
-                            Player pl = (Player)a;
-                            pl.HP -= 1;
-                            world.Tworld[i, j].Stuffs.Remove(a);
-                            world.Tworld[i, j - 1].Stuffs.Add(pl);
-                            Console.SetCursorPosition(3, 28);
-                            Console.Write("You moved WEST    ");
-
-                            flag = 1;
-                        }
-
-                        if (j <= 0)
-                        {
-                            Console.SetCursorPosition(3, 28);
-                            Console.Write("invalid moviment     ");
-                        }
-
-                        if (flag == 1) break;
-                    }
-                    if (flag == 1) break;
-                }
-                if (flag == 1) break;
-
-            }
-        }
-        void MovSouth(Player player)
-        {
-            int flag = 0;
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
-                    {
-                        if (a is Player && i < 7)
-                        {
-                            Player pl = (Player)a;
-                            pl.HP -= 1;
-                            world.Tworld[i, j].Stuffs.Remove(a);
-                            world.Tworld[i + 1, j].Stuffs.Add(pl);
-                            Console.SetCursorPosition(52, 3);
-                            Console.Write("You moved SOUTH   ");
-                            flag = 1;
-                        }
-
-                        if (i >= 7)
-                        {
-                            Console.SetCursorPosition(52, 3);
-                            Console.Write("invalid moviment   ");
-                        }
-
-                        if (flag == 1) break;
-                    }
-                    if (flag == 1) break;
-                }
-                if (flag == 1) break;
-
-            }
-        }
-        void MovEast(Player player)
-        {
-            int flag = 0;
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
-                    {
-                        if (a is Player && j < 7)
-                        {
-                            Player pl = (Player)a;
-                            pl.HP -= 1;
-                            world.Tworld[i, j].Stuffs.Remove(a);
-                            world.Tworld[i, j + 1].Stuffs.Add(pl);
-                            Console.SetCursorPosition(52, 3);
-                            Console.Write("You moved EAST   ");
-                            flag = 1;
-                        }
-
-                        if (j >= 7)
-                        {
-                            Console.SetCursorPosition(52, 3);
-                            Console.Write("invalid moviment   ");
-                        }
-
-                        if (flag == 1) break;
-                    }
-                    if (flag == 1) break;
-                }
-                if (flag == 1) break;
-
-            }
-        }
-        void MovNorth(Player player)
-        {
-            int flag = 0;
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
-                    {
-                        if (a is Player && i > 0)
-                        {
-                            Player pl = (Player)a;
-                            pl.HP -= 1;
-                            world.Tworld[i, j].Stuffs.Remove(a);
-                            world.Tworld[i - 1, j].Stuffs.Add(pl);
-                            Console.SetCursorPosition(52, 3);
-                            Console.Write("You moved NORTH   ");
-                            flag = 1;
-                        }
-
-                        if (i <= 0)
-                        {
-                            Console.SetCursorPosition(52, 3);
-                            Console.Write("invalid moviment   ");
-                        }
-
-                        if (flag == 1) break;
-                    }
-                    if (flag == 1) break;
-                }
-                if (flag == 1) break;
-
-            }
-
-        }
-
-        void Fight(World world)
-        {
-            drw.FightMenu();
-            int sel = Convert.ToChar(Console.Read());
-            Convert.ToInt32(sel);
-            foreach (Tile t in world.Tworld)
-            {
-                if (t.Stuffs.Contains(p) && t.Stuffs.Count > 1)
-                {
-                    if (sel == 6) break;
-                    if (sel > 0 && sel <= t.Stuffs.Count && t.Stuffs[sel - 1] is Mob)
-                    {
-                        drw.MobStatus(t.Stuffs[sel] as Mob);
-                    }
-                    else
-                    {
-                        Console.SetCursorPosition(52, 3);
-                        Console.Write("Choose one valid number     ");
-                        Console.SetCursorPosition(52, 4);
-                        Console.Write("between 1-5                 ");
-                    }
-
-                }
-                if (t.Stuffs.Contains(p) && t.Stuffs.Count == 1)
-                {
-                    Console.SetCursorPosition(52, 3);
-                    Console.Write("There are no mobs           ");
-                    Console.SetCursorPosition(52, 4);
-                    Console.Write("in this area                ");
-                }
-            }
-        }
-        void Information(Player player)
-        {
-            drw.Info(player);
-            Console.ReadKey();
-
-            drw.SetVisible(world);
-            drw.DrawWorld(world);
-            drw.DrawHud(p, world);
-            Console.SetCursorPosition(82, 28);
-            ConsoleKeyInfo key = Console.ReadKey();
-            Selections(key);
-
-        }
 
         void MainMenu()
         {
@@ -340,6 +162,185 @@ namespace RougueLikeRPG
 
         }
 
+        void MovWest(Player player)
+        {
+            int flag = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
+                    {
+                        if (a is Player && j > 0)
+                        {
+                            Player pl = (Player)a;
+                            pl.HP -= 1;
+                            world.Tworld[i, j].Stuffs.Remove(a);
+                            world.Tworld[i, j - 1].Stuffs.Add(pl);
+                            Console.SetCursorPosition(2, 27);
+                            Console.Write("You moved WEST           " +
+                                          "                       ");
+
+                            flag = 1;
+                        }
+
+                        if (j <= 0)
+                        {
+                            Console.SetCursorPosition(2, 27);
+                            Console.Write("invalid moviment     ");
+                        }
+
+                        if (flag == 1) break;
+                    }
+                    if (flag == 1) break;
+                }
+                if (flag == 1) break;
+
+            }
+        }
+        void MovSouth(Player player)
+        {
+            int flag = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
+                    {
+                        if (a is Player && i < 7)
+                        {
+                            Player pl = (Player)a;
+                            pl.HP -= 1;
+                            world.Tworld[i, j].Stuffs.Remove(a);
+                            world.Tworld[i + 1, j].Stuffs.Add(pl);
+                            Console.SetCursorPosition(2, 27);
+                            Console.Write("You moved SOUTH   ");
+                            flag = 1;
+                        }
+
+                        if (i >= 7)
+                        {
+                            Console.SetCursorPosition(2, 27);
+                            Console.Write("invalid moviment   ");
+                        }
+
+                        if (flag == 1) break;
+                    }
+                    if (flag == 1) break;
+                }
+                if (flag == 1) break;
+
+            }
+        }
+        void MovEast(Player player)
+        {
+            int flag = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
+                    {
+                        if (a is Player && j < 7)
+                        {
+                            Player pl = (Player)a;
+                            pl.HP -= 1;
+                            world.Tworld[i, j].Stuffs.Remove(a);
+                            world.Tworld[i, j + 1].Stuffs.Add(pl);
+                            Console.SetCursorPosition(2, 27);
+                            Console.Write("You moved EAST   ");
+                            flag = 1;
+                        }
+
+                        if (j >= 7)
+                        {
+                            Console.SetCursorPosition(2, 27);
+                            Console.Write("invalid moviment   ");
+                        }
+
+                        if (flag == 1) break;
+                    }
+                    if (flag == 1) break;
+                }
+                if (flag == 1) break;
+
+            }
+        }
+        void MovNorth(Player player)
+        {
+            int flag = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    foreach (ISortable a in world.Tworld[i, j].Stuffs)
+                    {
+                        if (a is Player && i > 0)
+                        {
+                            Player pl = (Player)a;
+                            pl.HP -= 1;
+                            world.Tworld[i, j].Stuffs.Remove(a);
+                            world.Tworld[i - 1, j].Stuffs.Add(pl);
+                            Console.SetCursorPosition(2, 27);
+                            Console.Write("You moved NORTH   ");
+                            flag = 1;
+                        }
+
+                        if (i <= 0)
+                        {
+                            Console.SetCursorPosition(2, 27);
+                            Console.Write("invalid moviment   ");
+                        }
+
+                        if (flag == 1) break;
+                    }
+                    if (flag == 1) break;
+                }
+                if (flag == 1) break;
+
+            }
+
+        }
+
+        void Information(Player player)
+        {
+            drw.Info(player);
+            Console.ReadKey();
+
+            drw.SetVisible(world);
+            drw.DrawWorld(world);
+            drw.DrawHud(p, world);
+            Console.SetCursorPosition(82, 28);
+            ConsoleKeyInfo key = Console.ReadKey();
+            Selections(key, mapTaken);
+
+        }
+        int PickMap(World world, int map)
+        {
+            map = 1;
+            foreach (Tile t in world.Tworld)
+            {
+                foreach (ISortable s in t.Stuffs)
+                {
+                    if (s is Player)
+                    {
+                        foreach (ISortable m in t.Stuffs)
+                        {
+                            if (m is Map)
+                            {
+                                drw.ShowWorld(world.Tworld);
+                                Console.SetCursorPosition(2, 27);
+                                Console.Write("you got a Map!");
+                                map = 2;
+                                t.Stuffs.Remove(m);
+                                return map;
+                            }
+                        }
+                    }
+                }
+            }
+            return map;
+        }
         void Credits()
         {
             drw.DrawCredits();
@@ -372,6 +373,15 @@ namespace RougueLikeRPG
                                 {
                                     if (!(m as Mob).neutral)
                                     { TotalAtk += ((Mob)m).MAttack(); }
+
+                                }
+
+                                if (m is Trap)
+                                {
+                                    {
+                                        TotalAtk += ((Trap)m).TAttack();
+                                        ((Trap)m).fallInto = true;
+                                    }
 
                                 }
                             }

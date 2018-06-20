@@ -8,8 +8,8 @@ namespace RougueLikeRPG
         /// <summary>
         /// Classe que representa alimentos ou itens de cura
         /// </summary>
-        
-        string Name { get; set; } = "";
+
+        public string Name { get; set; } = " ";
         public int HpIncrease { get; set; } = 0;
         public int Id { get; set; } = 0;
         public float Weight { get; set; } = 0;

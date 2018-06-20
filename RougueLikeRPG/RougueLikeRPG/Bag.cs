@@ -10,7 +10,7 @@ namespace RougueLikeRPG
         /// Classe que representa uma mochila ou saco que contem itens
         /// </summary>
         /// <summary>Array que contém os itens da mochila</summary>
-        private ArrayList items;
+        public ArrayList items;
         private char c = '&';
 
         /// <summary>Número de itens na mochila</summary>
@@ -53,7 +53,7 @@ namespace RougueLikeRPG
         }
 
         /// <summary>Observar um item da mochila sem o remover da mesma</summary>
-        /// <param name="index">Local onde está o item a observar</param>
+        /// <param Name="index">Local onde está o item a observar</param>
         /// <returns>Item a ser observado</returns>
         public IAmItem GetThing(int index)
         {

@@ -6,7 +6,7 @@ namespace RougueLikeRPG
 {
     class Tile
     {
-        private bool visible = true;
+        private bool visible = false;
         private int idTile = 0;
         private int lvl;
         private ArrayList stuffs = new ArrayList(5);
