@@ -10,7 +10,7 @@ namespace RougueLikeRPG
         public int HP { get; set; } = 100;
         public Weapon EqWpn { get; set; } = null;
         public Bag bag = new Bag();
-        private int MaxWeight { get; } = 300;
+        public int MaxWeight { get; } = 200;
         private char c = 'P';
         public Player()
         {
